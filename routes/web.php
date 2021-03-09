@@ -2,24 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-    Aquí se cargarán las rutas de nuestra aplicación a partir del PagesController.
-    El 1er argumento es la ruta que se mostrará en la pág.
-    El 2do argumento es el nombre de la función escrita en PageController que traerá la vista 
-    o acción.
-    El 3er argumento es muy útil para ser utilizado en etiquetas con atributo href, ya que al haber 
-    un cambio en el nombre de la ruta, no habría de cambiar dicha referencia en cada etiqueta 
-    que hayamos puesto en la página.
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
-Route::get('/erp/dashboard', [PagesController::class, 'home'])->name('home');
+Route::get('/erp/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+Route::get('/erp/tabla', [PagesController::class, 'tabla'])->name('tabla');
 
+/*Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');*/
 
+require __DIR__.'/auth.php';

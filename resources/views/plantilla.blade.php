@@ -19,11 +19,11 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="border-right " id="sidebar-wrapper">
-              <div class="sidebar-heading "><i class="bi bi-cart"></i>Adrick' JR</div>
+              <div class="sidebar-heading "><a href="{{ route('dashboard') }}"><i class="bi bi-cart"></i>Adrick' JR</a></div>
               <div class="sidebar-heading">USUARIO</div>
               <p class="my-3 ps-2">Mantenimiento</p>
               <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-inboxes-fill"></i> Categorías</a>
+                <a href="{{ route('tabla') }}" class="list-group-item list-group-item-action my-1"><i class="bi bi-inboxes-fill"></i> Categorías</a>
                 <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-box-seam"></i> Productos</a>
                 <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-people-fill"></i> Clientes</a>
                 <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-cart"></i> Ventas</a>
@@ -41,7 +41,7 @@
                                 <button class="btn btn-dark" id="menu-toggle"><i class="bi bi-list"></i></button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Home</a>
                             </li>
                         </ul>
         
@@ -56,10 +56,15 @@
                                     <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>                            
                                 </ul>
                             </li>
-                            <li class="nav-item px-5">
-                                <a class="nav-link" href="">
-                                    <i class="bi bi-power" aria-hidden="true"></i>
-                                </a>
+                            <li class="nav-item ">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            <i class="bi bi-power" aria-hidden="true"></i>
+                                        </a>
+                                    </form>
                             </li>
                         </ul>
                     </div>

@@ -29,7 +29,10 @@
                 <tbody>
                     <td>Eve</td>
                     <td>Jackson</td>
-                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash-fill"></i></td>
+                    <td>
+                      <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                    </td>
                 </tbody>
               </table>
         </div>

@@ -27,6 +27,16 @@ Para crear un controller, que será usado para conectar la vista con los urls de
 ```
 php artisan make:controller  [controller]
 ```
+Implementación mínima y simple de todas las funciones de autenticación de Laravel, que incluyen inicio de sesión, registro, restablecimiento de contraseña, verificación de correo electrónico y confirmación de contraseña.
+- [Documentacion](https://laravel.com/docs/8.x/starter-kits)
+- [Tutorial Instalación](https://www.youtube.com/watch?v=Gx3d9n69d9o)
+
+Blade es el motor de plantillas simple pero poderoso que se incluye con Laravel.
+- [Documentación](https://laravel.com/docs/8.x/blade#introduction)
+
+# Clonar
+- [Tutorial para ejecutar proyecto de Laravel](https://www.youtube.com/watch?v=EdZ0hQtrfEU)
+
 # Estructura del documento
 Las secciones más importantes del proyecto son los sgtes:
 

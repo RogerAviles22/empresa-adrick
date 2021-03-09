@@ -12,52 +12,84 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">        
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />        
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />      
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-sidebar.css')}}" />     
     </head>
-    <body >
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="bi bi-list"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown pr-5">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-gear-fill"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <span class="dropdown-header" style="font-size: 12px;">Ultima vez conectado</span>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>                            
-                        </ul>
-                    </li>
-                    <li class="nav-item px-5">
-                        <a class="nav-link" href="">
-                            <i class="bi bi-power" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar -->
+            <div class="border-right " id="sidebar-wrapper">
+              <div class="sidebar-heading "><i class="bi bi-cart"></i>Adrick' JR</div>
+              <div class="sidebar-heading">USUARIO</div>
+              <p class="my-3 ps-2">Mantenimiento</p>
+              <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-inboxes-fill"></i> Categorías</a>
+                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-box-seam"></i> Productos</a>
+                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-people-fill"></i> Clientes</a>
+                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-cart"></i> Ventas</a>
+                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-person-fill"></i> Usuarios</a>
+              </div>
             </div>
-        </nav>
+            <!-- /#sidebar-wrapper -->
+        
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <button class="btn btn-dark" id="menu-toggle"><i class="bi bi-list"></i></button>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                        </ul>
+        
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown pr-5">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <span class="dropdown-header" style="font-size: 12px;">Ultima vez conectado</span>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>                            
+                                </ul>
+                            </li>
+                            <li class="nav-item px-5">
+                                <a class="nav-link" href="">
+                                    <i class="bi bi-power" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+        
+              <!-- Aquí se cargan las secciones Estadisticas, Categorias, Productos, Ventas, Clientes y Usuarios-->
+                <section class="container-fluid main">
+                    @yield('seccion')
+                </section>
 
-        <!-- Aqupi se cargan las secciones Estadisticas, Categorias, Productos, Ventas, Clientes y Usuarios-->
-        <section class="container-fluid main">
-            @yield('seccion')
-        </section>
-
-        <footer class="main-footer text-center">
-            <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io"></a>.Adrick' JR</strong><br>
-            Todos los derechos reservados.
-        </footer>      
-
+                <footer class="main-footer text-center">
+                    <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io"></a>.Adrick' JR</strong><br>
+                    Todos los derechos reservados.
+                </footer> 
+            </div>
+            <!-- /#page-content-wrapper -->
+        
+          </div>
+   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            jQuery(document).ready(function($){
+                $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+                });
+            });
+        </script>
     </body>
 </html>

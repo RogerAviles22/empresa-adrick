@@ -17,7 +17,7 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('home');
 });
 
 Route::get('/erp/dashboard', [PagesController::class, 'home'])->name('home');

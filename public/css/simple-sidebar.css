@@ -20,23 +20,63 @@
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+  padding: 1rem 1.25rem;
+
+  text-align: center;
+
+}
+
+#carrito{
+    font-size: 1.2rem;
+    color: #D6D8D9;
+    margin-right: 0.3rem;
+    position: relative;
+    bottom: 0.3rem;
+
+}
+
+#adrick{
+    text-decoration: none;
+    color: #D6D8D9;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+
+}
+
+hr{
+    margin:0;
+}
+
+#user{
+    position: relative;
+    left: 2rem;
+    top: 1rem;
+    text-align: left;
+    padding: 2rem auto;
+    margin-bottom: 2.25rem;
+    margin-top: .25rem;
+
+}
+
+#mant{
+    font-size: .85rem;
+    margin-left: .75rem;
 }
 
 #sidebar-wrapper .list-group {
   width: 15rem;
 }
 
-div.list-group a{  
+div.list-group a{
   background-color: #333333 ;
   color: #F2F2F2 ;
   transition: 0.25s;
+  padding-left: 2rem;
 }
 
-div.list-group a:hover{  
+div.list-group a:hover{
   background-color: #636363 ;
-  color: #F2F2F2 ;
+  color: #220b0b ;
 }
 
 #page-content-wrapper {
@@ -65,3 +105,4 @@ div.list-group a:hover{
 #sidebar-wrapper a i{
   padding-left: 5px;
 }
+

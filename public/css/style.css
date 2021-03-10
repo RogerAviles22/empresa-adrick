@@ -2,3 +2,36 @@ body {
     font-family: 'Nunito', sans-serif;
     background-color: #F2F2F2;
 }
+
+
+.buscador{
+    text-align:right;
+    margin: 2rem, 0;
+}
+
+.buscador input{
+    border: 1px solid #80BDFF;
+    width: 30%;
+
+}
+
+.tam{
+    margin: 2rem, 0;
+}
+
+.tam select{
+    border: 1px solid #80BDFF;
+}
+
+.extras{
+    padding: .65rem 0;
+    padding-bottom: .75rem;
+}
+
+.card-header{
+    color:#F6F6FB;
+}
+
+
+
+

@@ -9,9 +9,9 @@
       </nav>
 </div>
 <div>
-<h1>Reporte de ventas</h1>
+
 </div>
 <div>
-    <h1>Porcentaje de Ventas</h1>
+
 </div>
 @endsection

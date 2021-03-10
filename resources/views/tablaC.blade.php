@@ -36,8 +36,8 @@
         <div class="table-responsive">
             <table class="table">
                 <thead class="table-light">
-                    <th id="nro">Nro</th>
-                    <th>Nombre</th>
+                    <th id="apellido">Firstname</th>
+                    <th>Lastname</th>
                     <th>Opciones</th>
                 </thead>
                 <tbody>

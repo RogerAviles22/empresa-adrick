@@ -14,19 +14,19 @@
       <i class="bi bi-plus"></i> Creación de una categoría
     </div>
     <div class="card-body">
-        <form action="">
+        <form action="{{route('category.create')}}" method="post">
             @csrf
             <div class="row">
                 <div class="mb-3">
-                    <label for="nombrecategory" class="form-label">Email address</label>
+                    <label for="nombrecategory" class="form-label">Nombre</label>
                     <input type="text" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese un nombre">
                   </div>
             </div>
             <div class="card-footer ">
-                <button type="button" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
+                <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
                 <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
               </div>
         </form>
-        
+
   </div>
 @endsection

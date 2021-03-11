@@ -65,7 +65,7 @@
 
     </div>
     <div class="card-footer ">
-        <button type="button" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Nuevo Registro</button>
+        <a type="button" class="btn btn-info fw-bold" href="{{route('category.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
         <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>

@@ -39,7 +39,7 @@
                     <th id="apellido">Nro</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                    <th>DNI</th>
+                    <th>Cedula</th>
                     <th>Teléfono</th>
                     <th>Email</th>
                     <th>Opciones</th>
@@ -69,7 +69,7 @@
 
     </div>
     <div class="card-footer ">
-        <button type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</button>
+        <a type="button" class="btn btn-info" href="{{route('client.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
         <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>

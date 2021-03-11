@@ -69,7 +69,7 @@
 
     </div>
     <div class="card-footer ">
-        <button type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</button>
+        <a type="button" class="btn btn-info" href="{{route('product.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
         <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>

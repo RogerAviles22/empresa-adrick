@@ -32,6 +32,14 @@ body {
     color:#F6F6FB;
 }
 
+#select-cat{
+    border:1px solid #CED4DA;
+    width:100%;
+    height: 100%;
+}
 
+#label-cat{
+    margin-bottom: 10px;
+}
 
 

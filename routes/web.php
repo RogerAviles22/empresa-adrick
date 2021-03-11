@@ -32,6 +32,10 @@ Route::get('/erp/client/add', [PagesController::class, 'formClient'])->name('cli
 Route::get('/erp/sale/add', [PagesController::class, 'formSale'])->name('sale.add');
 Route::get('/erp/user/add', [PagesController::class, 'formUser'])->name('user.add');
 
+Route::post('/erp/category/add', [PagesController::class, 'addCategory'])->name('category.create');
+Route::post('/erp/client/add', [PagesController::class, 'addClient'])->name('client.create');
+Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->name('product.create');
+
 /*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');*/

@@ -25,6 +25,13 @@ Route::get('/erp/client', [PagesController::class, 'tableClient'])->name('tablaC
 Route::get('/erp/sale', [PagesController::class, 'tableSale'])->name('tablaV');
 Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
 
+
+Route::get('/erp/category/add', [PagesController::class, 'formCategory'])->name('category.add');
+Route::get('/erp/product/add', [PagesController::class, 'formProduct'])->name('product.add');
+Route::get('/erp/client/add', [PagesController::class, 'formClient'])->name('client.add');
+Route::get('/erp/sale/add', [PagesController::class, 'formSale'])->name('sale.add');
+Route::get('/erp/user/add', [PagesController::class, 'formUser'])->name('user.add');
+
 /*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');*/

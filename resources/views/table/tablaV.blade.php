@@ -4,14 +4,14 @@
     <h1>Bienvenido Usuario</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Library</li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ventas</li>
         </ol>
       </nav>
 </div>
 <div class="card">
     <div class="card-header bg-secondary">
-      <i class="bi bi-search"></i> Listado de Categorias
+      <i class="bi bi-search"></i> Listado de Ventas
     </div>
     <div class="card-body">
         <div class="row extras">
@@ -36,21 +36,23 @@
         <div class="table-responsive">
             <table class="table">
                 <thead class="table-light">
-                    <th id="apellido">Firstname</th>
-                    <th>Lastname</th>
+                    <th id="">Nro</th>
+                    <th id="">Factura</th>
+                    <th id="">Cliente</th>
+                    <th>Fecha de registro</th>
+                    <th>Subtotal</th>
+                    <th>IVA</th>
+                    <th>Total a pagar</th>
                     <th>Opciones</th>
                 </thead>
-                <tbody>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash-fill"></i></td>
-                </tbody>
                 <tbody>
                     <td>Eve</td>
                     <td>Jackson</td>
                     <td>
                       <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
                       <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                      <button type="button" class="btn btn-success btn-sm"><i class="bi bi-search"></i></button>
+                      <button type="button" class="btn btn-primary btn-sm"><i class="bi bi-file-earmark-text-fill"></i></button>
                     </td>
                 </tbody>
               </table>

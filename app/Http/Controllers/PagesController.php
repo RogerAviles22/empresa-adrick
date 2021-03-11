@@ -13,7 +13,24 @@ class PagesController extends Controller
         return view('dashboard');
     }
 
-    public function tabla(){
-        return view('tabla');
+    public function tableCategory(){
+        return view('table.tabla');
     }
+
+    public function tableProduct(){
+        return view('table.tablaP');
+    }
+
+    public function tableClient(){
+        return view('table.tablaC');
+    }
+
+    public function tableSale(){
+        return view('table.tablaV');
+    }
+
+    public function tableUser(){
+        return view('table.tablaU');
+    }
+
 }

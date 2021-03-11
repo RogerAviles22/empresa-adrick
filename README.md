@@ -23,9 +23,9 @@ Ejecuta Apache y MySQL en XAMPP y a continuación el servidor de esta forma
 ```
 php artisan serve
 ```
-Para crear un controller, que será usado para conectar la vista con los urls de la pág :
+Para crear un controller con los métodos sugeridos para crear CRUD, vinculando su modelo y en una carpeta específica, que será usado para conectar la vista con los urls de la pág :
 ```
-php artisan make:controller  [controller]
+php artisan make:controller <Carpeta>/<NameController> --resource --model=<NameModels>
 ```
 Implementación mínima y simple de todas las funciones de autenticación de Laravel, que incluyen inicio de sesión, registro, restablecimiento de contraseña, verificación de correo electrónico y confirmación de contraseña.
 - [Documentacion](https://laravel.com/docs/8.x/starter-kits)
@@ -62,3 +62,6 @@ En /public tendremos los recursos a usar en el proyecto (css/js/imgs/fonts)
 ## Routes
 Las rutas de vital importancia estarán en los sgtes carpetas:
 /routes/web.php
+
+# Recomendaciones
+Si en algún momento no se reflejan los cambios en pantalla, presionar Shift + Ctrl +R 

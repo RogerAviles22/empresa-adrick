@@ -4,14 +4,14 @@
     <h1>Bienvenido Usuario</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Library</li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
         </ol>
       </nav>
 </div>
 <div class="card">
     <div class="card-header bg-secondary">
-      <i class="bi bi-search"></i> Listado de Categorias
+      <i class="bi bi-search"></i> Listado de Usuarios
     </div>
     <div class="card-body">
         <div class="row extras">
@@ -36,15 +36,14 @@
         <div class="table-responsive">
             <table class="table">
                 <thead class="table-light">
-                    <th id="apellido">Firstname</th>
-                    <th>Lastname</th>
+                    <th id="">Nro</th>
+                    <th>Nombres</th>
+                    <th>UserName</th>
+                    <th>Fecha de Registro</th>
+                    <th>Imagen</th>
+                    <th>Grupos</th>
                     <th>Opciones</th>
                 </thead>
-                <tbody>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash-fill"></i></td>
-                </tbody>
                 <tbody>
                     <td>Eve</td>
                     <td>Jackson</td>

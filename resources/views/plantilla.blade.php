@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-sidebar.css')}}" />
+        <link rel="icon" type="image/png" href="{{ asset('img/cart.png') }}" />
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -26,10 +27,10 @@
               <p id="mant" class="my-3 ps-2">Mantenimiento</p>
               <div class="list-group list-group-flush">
                 <a href="{{route('tabla')}}" class="list-group-item list-group-item-action my-1"><i class="bi bi-inboxes-fill"></i> Categorías</a>
-                <a href="" class="list-group-item list-group-item-action my-1"><i class="bi bi-box-seam"></i> Productos</a>
-                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-people-fill"></i> Clientes</a>
-                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-cart"></i> Ventas</a>
-                <a href="#" class="list-group-item list-group-item-action my-1"><i class="bi bi-person-fill"></i> Usuarios</a>
+                <a href="{{route('tablaP')}}" class="list-group-item list-group-item-action my-1"><i class="bi bi-box-seam"></i> Productos</a>
+                <a href="{{route('tablaC')}}" class="list-group-item list-group-item-action my-1"><i class="bi bi-people-fill"></i> Clientes</a>
+                <a href="{{route('tablaV')}}" class="list-group-item list-group-item-action my-1"><i class="bi bi-cart"></i> Ventas</a>
+                <a href="{{route('tablaU')}}" class="list-group-item list-group-item-action my-1"><i class="bi bi-person-fill"></i> Usuarios</a>
               </div>
             </div>
             <!-- /#sidebar-wrapper -->

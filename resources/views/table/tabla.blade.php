@@ -4,8 +4,8 @@
     <h1>Bienvenido Usuario</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Library</li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Categorías</li>
         </ol>
       </nav>
 </div>
@@ -36,18 +36,13 @@
         <div class="table-responsive">
             <table class="table">
                 <thead class="table-light">
-                    <th id="apellido">Firstname</th>
-                    <th>Lastname</th>
+                    <th id="nro">Nro</th>
+                    <th>Nombre</th>
                     <th>Opciones</th>
                 </thead>
                 <tbody>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash-fill"></i></td>
-                </tbody>
-                <tbody>
-                    <td>Eve</td>
-                    <td>Jackson</td>
+                    <td>1</td>
+                    <td>Comida</td>
                     <td>
                       <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
                       <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
@@ -70,8 +65,8 @@
 
     </div>
     <div class="card-footer ">
-        <button type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</button>
-        <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
+        <button type="button" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Nuevo Registro</button>
+        <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>
 @endsection

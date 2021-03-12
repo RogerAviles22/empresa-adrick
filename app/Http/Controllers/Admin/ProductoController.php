@@ -89,6 +89,6 @@ class ProductoController extends Controller
     {
         $product = Producto::findOrFail($id);
         $product->delete(); 
-        return back();
+        return back()->with('eliminar','ok');
     }
 }

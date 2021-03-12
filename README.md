@@ -31,12 +31,19 @@ Para migrar la base de datos:
 ```
 php artisan migrate
 ```
+Eloquent: Mapeador relacional de objetos (ORM) que hace que sea agradable interactuar con su base de datos. Cuando se usa Eloquent, cada tabla de la base de datos tiene un "Modelo" correspondiente que se usa para interactuar con esa tabla. Además de recuperar registros de la tabla de la base de datos, los modelos Eloquent le permiten insertar, actualizar y eliminar registros de la tabla también.
+- [Documentacion Eloquent](https://laravel.com/docs/8.x/eloquent#introduction)
+
 Laravel Breeze: Implementación mínima y simple de todas las funciones de autenticación de Laravel, que incluyen inicio de sesión, registro, restablecimiento de contraseña, verificación de correo electrónico y confirmación de contraseña.
 - [Documentacion](https://laravel.com/docs/8.x/starter-kits)
 - [Tutorial Instalación](https://www.youtube.com/watch?v=Gx3d9n69d9o)
 
 Blade es el motor de plantillas simple pero poderoso que se incluye con Laravel.
 - [Documentación](https://laravel.com/docs/8.x/blade#introduction)
+
+# Librerías
+SweetAlert: A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES
+- [SweetAlert](https://sweetalert2.github.io/#download)
 
 # Clonar
 - [Tutorial para ejecutar proyecto de Laravel](https://www.youtube.com/watch?v=EdZ0hQtrfEU)

@@ -86,6 +86,6 @@ class CategoriaController extends Controller
     {
         $categoria = Categoria::findOrFail($id);
         $categoria->delete(); 
-        return back();
+        return back()->with('eliminar','ok');
     }
 }

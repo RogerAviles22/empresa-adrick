@@ -59,7 +59,7 @@
                         <td>
                             <div class="d-flex justify-content-start">
                                 <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-                                <form action="{{ route('client.destroy', $client) }}"  method="POST">
+                                <form class="items-delete" action="{{ route('client.destroy', $client) }}"  method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
@@ -84,4 +84,19 @@
         <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>
+@endsection
+
+<!--Alerts-->
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                '!Borrado!',
+                'El elemento fue borrado exitosamente',
+                'success'
+            );
+        </script>
+    @endif
+    <script src="{{ asset('js/alerts.js') }}"></script>
 @endsection

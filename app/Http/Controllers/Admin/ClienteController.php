@@ -88,6 +88,6 @@ class ClienteController extends Controller
     {
         $product = Cliente::findOrFail($id);
         $product->delete(); 
-        return back();
+        return back()->with('eliminar','ok');
     }
 }

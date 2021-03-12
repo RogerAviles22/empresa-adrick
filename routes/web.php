@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/erp/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
-Route::get('/erp/category', [PagesController::class, 'tableCategory'])->name('tabla');
+Route::get('/erp/category', [CategoriaController::class, 'index'])->name('tabla');
 Route::get('/erp/product', [PagesController::class, 'tableProduct'])->name('tablaP');
 Route::get('/erp/client', [PagesController::class, 'tableClient'])->name('tablaC');
 Route::get('/erp/sale', [PagesController::class, 'tableSale'])->name('tablaV');
@@ -35,6 +35,9 @@ Route::get('/erp/user/add', [PagesController::class, 'formUser'])->name('user.ad
 Route::post('/erp/category/add', [PagesController::class, 'addCategory'])->name('category.create');
 Route::post('/erp/client/add', [PagesController::class, 'addClient'])->name('client.create');
 Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->name('product.create');
+
+
+Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->name('category.destroy');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');

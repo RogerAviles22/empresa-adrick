@@ -13,9 +13,16 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request){
+            $query = trim($request->get('search'));
+            $categories = Categoria::where('nombre', 'LIKE', '%'.$query.'%')
+                                    ->paginate(5);
+            return view('table.tabla', compact('categories','query'));
+        }
+
+        
     }
 
     /**
@@ -76,11 +83,11 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy ($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete(); 
+        return back();
     }
 }

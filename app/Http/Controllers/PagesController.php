@@ -17,9 +17,9 @@ class PagesController extends Controller
         return view('dashboard');
     }
 
-    public function tableCategory(){
+    /*public function tableCategory(){
         return view('table.tabla');
-    }
+    }*/
 
     public function tableProduct(){
         return view('table.tablaP');

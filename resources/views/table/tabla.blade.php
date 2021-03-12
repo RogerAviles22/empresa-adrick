@@ -28,8 +28,10 @@
             </div>
             <div class="col-xl-6">
                 <div class="buscador">
-                    <label for="search">Buscar: </label>
-                    <input type="text" name="search" id="buscar">
+                    <form action="">
+                        <label for="search">Buscar: </label>
+                        <input type="search" name="search" id="buscar">
+                    </form>
                 </div>
             </div>
         </div>
@@ -41,26 +43,30 @@
                     <th>Opciones</th>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Comida</td>
-                    <td>
-                      <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                    </td>
+                    @foreach ($categories as $categoria)
+                    <tr>
+                        <td>{{$categoria->id}}</td>
+                        <td>{{$categoria->nombre}}</td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <form action="{{ route('category.destroy', $categoria) }}"  method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                                </form> 
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
               </table>
         </div>
         <div class="d-flex justify-content-between">
             <p>Mostrando 1 de algunas</p>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
+            <div class="pagination justify-content-center">
+                {{$categories -> links('pagination::bootstrap-4')}}
+            </div>
         </div>
 
     </div>

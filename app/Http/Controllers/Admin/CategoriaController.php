@@ -13,14 +13,10 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request){
-            $query = trim($request->get('search'));
-            $categories = Categoria::where('nombre', 'LIKE', '%'.$query.'%')
-                                    ->paginate(5);
-            return view('table.tabla', compact('categories','query'));
-        }
+        $categories = Categoria::all();
+        return view('table.tabla', compact('categories'));
     }
 
     /**

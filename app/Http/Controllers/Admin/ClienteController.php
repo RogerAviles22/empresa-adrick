@@ -11,16 +11,11 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request){
-            $query = trim($request->get('search'));
-            $clients = Cliente::where('nombre', 'LIKE', '%'.$query.'%')
-                                    ->paginate(5);
-            return view('table.tablaC', compact('clients','query'));
-        }
+        $clients = Cliente::all();
+        return view('table.tablaC', compact('clients'));
     }
 
     /**

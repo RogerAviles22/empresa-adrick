@@ -44,6 +44,7 @@ Blade es el motor de plantillas simple pero poderoso que se incluye con Laravel.
 # Librerías
 SweetAlert: A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES
 - [SweetAlert](https://sweetalert2.github.io/#download)
+- [Tutorial Uso](https://www.youtube.com/watch?v=D3Ww5FGa1mY)
 
 # Clonar
 - [Tutorial para ejecutar proyecto de Laravel](https://www.youtube.com/watch?v=EdZ0hQtrfEU)

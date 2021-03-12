@@ -14,16 +14,9 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        if($request){
-            $query = trim($request->get('search'));
-            $products = Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
-                                    ->paginate(5);
-            /*$categoria = DB::table('categorias')
-                                    ->where('id_entretenimiento', $id)
-                                    ->get();*/
-            return view('table.tablaP', compact('products','query'));
-        }
+    {        
+        $products = Producto::all();
+        return view('table.tablaP', compact('products'));
     }
 
     /**

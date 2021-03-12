@@ -1,4 +1,12 @@
 @extends('plantilla')
+
+@section('css')
+    <!--Tables-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
+@endsection
+
 @section('seccion')
 <div class="d-flex justify-content-between align-items-center mt-2">
     <h1>Bienvenido Usuario</h1>
@@ -14,68 +22,37 @@
       <i class="bi bi-search"></i> Listado de Productos
     </div>
     <div class="card-body">
-        <div class="row extras">
-            <div class="col-xl-6">
-                <div class="tam">
-                    <label for="tamano">Mostrar</label>
-                    <select name="tamano" id="numreg">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select>
-                    <label for=""> registros</label>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="buscador">
-                    <form>
-                        <label for="search">Buscar: </label>
-                        <input type="text" name="search" id="buscar">
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="table-light">
-                    <th id="">Nro</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Imagen</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Opciones</th>
-                </thead>
-                <tbody>
-                    @foreach ($products as $product)
-                    <tr>
-                        <td>{{$product->id}}</td>
-                        <td>{{$product->nom_producto}}</td>
-                        <td>{{$product->precio}}</td>
-                        <td><span class="badge bg-success">{{$product->stock}}</span></td>
-                        <td>{{$product->id_categoria}}</td>
-                        <td>
-                            <div class="d-flex justify-content-start">
-                                <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-                                <form class="items-delete" action="{{ route('product.destroy', $product) }}"  method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                                </form> 
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-              </table>
-        </div>
-        <div class="d-flex justify-content-between">
-            <p>Mostrando 1 de algunas</p>
-            <div class="pagination justify-content-center">
-                {{$products -> links('pagination::bootstrap-4')}}
-            </div>
-        </div>
-
+    <table id="items-table" class="table table-striped">
+        <thead class="table-light">
+            <th id="">Nro</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoria</th>
+            <th>Opciones</th>
+        </thead>
+        <tbody>
+            @foreach ($products as $product)
+            <tr>
+                <td>{{$product->id}}</td>
+                <td>{{$product->nom_producto}}</td>
+                <td>{{$product->precio}}</td>
+                <td><span class="badge bg-success">{{$product->stock}}</span></td>
+                <td>{{$product->id_categoria}}</td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                        <form class="items-delete" action="{{ route('product.destroy', $product) }}"  method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                        </form> 
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
     <div class="card-footer ">
         <a type="button" class="btn btn-info" href="{{route('product.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
@@ -84,8 +61,15 @@
   </div>
 @endsection
 
-<!--Alerts-->
 @section('js')
+    <!--Tables-->
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('js/tables.js') }}"></script>
+
+    <!--Alerts-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @if (session('eliminar') == 'ok')
         <script>

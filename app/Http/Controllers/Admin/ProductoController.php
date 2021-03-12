@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Categoria;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,12 @@ class CategoriaController extends Controller
     {
         if($request){
             $query = trim($request->get('search'));
-            $categories = Categoria::where('nombre', 'LIKE', '%'.$query.'%')
+            $products = Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
                                     ->paginate(5);
-            return view('table.tabla', compact('categories','query'));
+            /*$categoria = DB::table('categorias')
+                                    ->where('id_entretenimiento', $id)
+                                    ->get();*/
+            return view('table.tablaP', compact('products','query'));
         }
     }
 
@@ -47,10 +50,10 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(Producto $producto)
     {
         //
     }
@@ -58,10 +61,10 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(Producto $producto)
     {
         //
     }
@@ -70,10 +73,10 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, Producto $producto)
     {
         //
     }
@@ -82,10 +85,10 @@ class CategoriaController extends Controller
      * Remove the specified resource from storage.
      *
      */
-    public function destroy ($id)
+    public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete(); 
+        $product = Producto::findOrFail($id);
+        $product->delete(); 
         return back();
     }
 }

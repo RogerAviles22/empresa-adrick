@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Productos</li>
+          <li class="breadcrumb-item active"><a href="{{ route('tablaP') }}">Productos</a></li>
         </ol>
       </nav>
 </div>
@@ -28,8 +28,10 @@
             </div>
             <div class="col-xl-6">
                 <div class="buscador">
-                    <label for="search">Buscar: </label>
-                    <input type="text" name="search" id="buscar">
+                    <form>
+                        <label for="search">Buscar: </label>
+                        <input type="text" name="search" id="buscar">
+                    </form>
                 </div>
             </div>
         </div>
@@ -45,26 +47,33 @@
                     <th>Opciones</th>
                 </thead>
                 <tbody>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>
-                      <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                    </td>
+                    @foreach ($products as $product)
+                    <tr>
+                        <td>{{$product->id}}</td>
+                        <td>{{$product->nom_producto}}</td>
+                        <td>{{$product->precio}}</td>
+                        <td>{{$product->stock}}</td>
+                        <td>{{$product->id_categoria}}</td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <form action="{{ route('product.destroy', $product) }}"  method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                                </form> 
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
               </table>
         </div>
         <div class="d-flex justify-content-between">
             <p>Mostrando 1 de algunas</p>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
+            <div class="pagination justify-content-center">
+                {{$products -> links('pagination::bootstrap-4')}}
+            </div>
         </div>
 
     </div>

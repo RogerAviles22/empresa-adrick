@@ -28,7 +28,7 @@
             </div>
             <div class="col-xl-6">
                 <div class="buscador">
-                    <form action="">
+                    <form>
                         <label for="search">Buscar: </label>
                         <input type="search" name="search" id="buscar">
                     </form>

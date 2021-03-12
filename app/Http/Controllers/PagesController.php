@@ -21,9 +21,9 @@ class PagesController extends Controller
         return view('table.tabla');
     }*/
 
-    public function tableProduct(){
+    /*public function tableProduct(){
         return view('table.tablaP');
-    }
+    }*/
 
     public function tableClient(){
         return view('table.tablaC');

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\ProductoController;
+use App\Http\Controllers\Admin\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +22,8 @@ Route::get('/', function () {
 
 Route::get('/erp/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 Route::get('/erp/category', [CategoriaController::class, 'index'])->name('tabla');
-Route::get('/erp/product', [PagesController::class, 'tableProduct'])->name('tablaP');
-Route::get('/erp/client', [PagesController::class, 'tableClient'])->name('tablaC');
+Route::get('/erp/product', [ProductoController::class, 'index'])->name('tablaP');
+Route::get('/erp/client', [ClienteController::class, 'index'])->name('tablaC');
 Route::get('/erp/sale', [PagesController::class, 'tableSale'])->name('tablaV');
 Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
 
@@ -38,6 +40,8 @@ Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->name('p
 
 
 Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->name('category.destroy');
+Route::delete('/erp/product/delete/{id}', [ProductoController::class, 'destroy'])->name('product.destroy');
+Route::delete('/erp/client/delete/{id}', [ClienteController::class, 'destroy'])->name('client.destroy');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');

@@ -27,7 +27,11 @@ Para crear un controller con los métodos sugeridos para crear CRUD, vinculando 
 ```
 php artisan make:controller <Carpeta>/<NameController> --resource --model=<NameModels>
 ```
-Implementación mínima y simple de todas las funciones de autenticación de Laravel, que incluyen inicio de sesión, registro, restablecimiento de contraseña, verificación de correo electrónico y confirmación de contraseña.
+Para migrar la base de datos:
+```
+php artisan migrate
+```
+Laravel Breeze: Implementación mínima y simple de todas las funciones de autenticación de Laravel, que incluyen inicio de sesión, registro, restablecimiento de contraseña, verificación de correo electrónico y confirmación de contraseña.
 - [Documentacion](https://laravel.com/docs/8.x/starter-kits)
 - [Tutorial Instalación](https://www.youtube.com/watch?v=Gx3d9n69d9o)
 

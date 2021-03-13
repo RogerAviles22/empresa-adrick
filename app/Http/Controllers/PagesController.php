@@ -81,4 +81,21 @@ class PagesController extends Controller
         return redirect()->route('tablaP');
     }
 
+    public function editCategory($id){
+        $category = Categoria::findOrFail($id);
+        return view('forms.formCedit', compact('category'));
+    }
+
+    public function editClient($id){
+        $client= Cliente::findOrFail($id);
+        return view('forms.formCledit', compact('client'));
+    }
+
+    public function editProduct($id){
+        $product= Producto::findOrFail($id);
+        $cats = Categoria::orderBy('nombre','desc')->get();
+        $data = ["cats" => $cats, "product" => $product];
+        return view('forms.formPedit', compact('data'));
+    }
+
 }

@@ -14,7 +14,7 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
+    {
         $products = Producto::all();
         return view('table.tablaP', compact('products'));
     }
@@ -69,9 +69,17 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $newP = Producto::findOrFail($id);
+        $newP->nom_producto = $request->input('nombre');
+        $newP->precio = $request->input('precio');
+        $newP->id_categoria = $request->input('categoria');
+        $newP->stock = $request->input('stock');
+        $newP->save();
+        return redirect()->route('tablaP')->with('Info:','Se actualizó el producto con id: '.$id);
+
     }
 
     /**
@@ -81,7 +89,7 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $product = Producto::findOrFail($id);
-        $product->delete(); 
+        $product->delete();
         return back()->with('eliminar','ok');
     }
 }

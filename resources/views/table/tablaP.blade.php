@@ -41,12 +41,12 @@
                 <td>{{$product->id_categoria}}</td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                        <a href="{{route('product.edit',$product->id)}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                         <form class="items-delete" action="{{ route('product.destroy', $product) }}"  method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                        </form> 
+                        </form>
                     </div>
                 </td>
             </tr>

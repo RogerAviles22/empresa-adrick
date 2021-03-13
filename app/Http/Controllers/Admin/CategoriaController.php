@@ -69,9 +69,14 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
         //
+        $categoriaN = Categoria::findOrFail($id);
+        $categoriaN->nombre = $request->input('nombre');
+        $categoriaN->save();
+        return redirect()->route('tabla')->with('Info:','Se actualizó la categoria con id: '.$id);
+
     }
 
     /**
@@ -81,7 +86,7 @@ class CategoriaController extends Controller
     public function destroy ($id)
     {
         $categoria = Categoria::findOrFail($id);
-        $categoria->delete(); 
+        $categoria->delete();
         return back()->with('eliminar','ok');
     }
 }

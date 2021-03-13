@@ -37,12 +37,12 @@
                         <td>{{$categoria->nombre}}</td>
                         <td>
                             <div class="d-flex justify-content-start">
-                                <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <a type="button" href="{{route('category.edit',$categoria->id)}}"  class="btn btn-warning btn-sm"><i class="bi bi-pencil-square" ></i></a>
                                 <form action="{{ route('category.destroy', $categoria) }}" class="items-delete" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                                </form> 
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -52,7 +52,7 @@
     </div>
     <div class="card-footer ">
         <a type="button" class="btn btn-info fw-bold" href="{{route('category.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
-        <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
+        <a type="button" class="btn btn-success fw-bold" > <i class="bi bi-arrow-repeat"></i> Actualizar</a>
       </div>
   </div>
 @endsection

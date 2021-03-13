@@ -68,9 +68,18 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
         //
+        $clientN = Cliente::findOrFail($id);
+        $clientN->nombre = $request->input('nombre');
+        $clientN->apellido = $request->input('apellido');
+        $clientN->direccion = $request->input('direccion');
+        $clientN->cedula = $request->input('cedula');
+        $clientN->telefono = $request->input('telefono');
+        $clientN->correo_electronico = $request->input('correo');
+        $clientN->save();
+        return redirect()->route('tablaC')->with('Info:','Se actualizó el cliente con id: '.$id);
     }
 
     /**
@@ -82,7 +91,7 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         $product = Cliente::findOrFail($id);
-        $product->delete(); 
+        $product->delete();
         return back()->with('eliminar','ok');
     }
 }

@@ -28,7 +28,7 @@
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
-            <th>Categoria</th>
+            <th>Categoría</th>
             <th>Opciones</th>
         </thead>
         <tbody>
@@ -38,11 +38,11 @@
                 <td>{{$product->nom_producto}}</td>
                 <td>{{$product->precio}}</td>
                 <td><span class="badge bg-success">{{$product->stock}}</span></td>
-                <td>{{$product->id_categoria}}</td>
+                <td>{{$product->nombre}}</td>
                 <td>
                     <div class="d-flex justify-content-start">
                         <a href="{{route('product.edit',$product->id)}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                        <form class="items-delete" action="{{ route('product.destroy', $product) }}"  method="POST">
+                        <form class="items-delete" action="{{ route('product.destroy', $product->id) }}"  method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>

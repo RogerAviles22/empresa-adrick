@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -15,8 +16,12 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Producto::all();
+        $products = DB::table('productos')
+                                ->join('categorias', 'productos.id_categoria', '=', 'categorias.id')
+                                ->select('productos.*','categorias.nombre')
+                                ->get(); 
         return view('table.tablaP', compact('products'));
+        //return $products;
     }
 
     /**

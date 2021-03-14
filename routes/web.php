@@ -5,6 +5,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\ClienteController;
+use App\Http\Controllers\Admin\ChartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/erp/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+Route::get('/erp/dashboard', [ChartController::class, 'charts'])->name('dashboard');
+
+Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
 Route::get('/erp/category', [CategoriaController::class, 'index'])->name('tabla');
 Route::get('/erp/product', [ProductoController::class, 'index'])->name('tablaP');
 Route::get('/erp/client', [ClienteController::class, 'index'])->name('tablaC');

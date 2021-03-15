@@ -8,7 +8,7 @@ class CreateDetalleFacturasTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * https://stackoverflow.com/questions/47544109/laravel-cannot-delete-or-update-a-parent-row-a-foreign-key-constraint-fails
      * @return void
      */
     public function up()
@@ -28,7 +28,7 @@ class CreateDetalleFacturasTable extends Migration
         });
 
         Schema::table('detalle_facturas', function($table) {
-            $table->foreign('id_factura')->references('id')->on('facturas');
+            $table->foreign('id_factura')->references('id')->on('facturas')->onDelete('cascade');
             $table->foreign('id_producto')->references('id')->on('productos');
         });
     }

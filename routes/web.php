@@ -5,6 +5,8 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\ClienteController;
+use App\Http\Controllers\Admin\VentaController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChartController;
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,12 @@ Route::get('/', function () {
 
 Route::get('/erp/dashboard', [ChartController::class, 'charts'])->name('dashboard');
 
-Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
+//Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
 Route::get('/erp/category', [CategoriaController::class, 'index'])->name('tabla');
 Route::get('/erp/product', [ProductoController::class, 'index'])->name('tablaP');
 Route::get('/erp/client', [ClienteController::class, 'index'])->name('tablaC');
-Route::get('/erp/sale', [PagesController::class, 'tableSale'])->name('tablaV');
-Route::get('/erp/user', [PagesController::class, 'tableUser'])->name('tablaU');
+Route::get('/erp/sale', [VentaController::class, 'index'])->name('tablaV');
+Route::get('/erp/user', [UserController::class, 'index'])->name('tablaU');
 
 
 Route::get('/erp/category/add', [PagesController::class, 'formCategory'])->name('category.add');
@@ -54,6 +56,8 @@ Route::put('/erp/producto/{id}',[ProductoController::class,'update'])->name('pro
 Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->name('category.destroy');
 Route::delete('/erp/product/delete/{id}', [ProductoController::class, 'destroy'])->name('product.destroy');
 Route::delete('/erp/client/delete/{id}', [ClienteController::class, 'destroy'])->name('client.destroy');
+Route::delete('/erp/sale/delete/{id}', [VentaController::class, 'destroy'])->name('sale.destroy');
+Route::delete('/erp/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');

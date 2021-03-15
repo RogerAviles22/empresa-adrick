@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 /**
  * PagesController será el Controller encargado de cargar las vistas (View) y además
@@ -44,6 +45,16 @@ class PagesController extends Controller
     public function formClient(){
         return view('forms.formCl');
     }
+
+    public function formSale(){
+        $clients = CLiente::orderBy('nombre','desc')->get();
+        $products = Producto::orderBy('nom_producto','desc')->get();
+        $data=["clients"=>$clients,
+        "products"=>$products];
+        return view('forms.formV',compact('data'));
+    }
+
+
 
     public function formProduct(){
         $cats = Categoria::orderBy('nombre','desc')->get();
@@ -95,7 +106,9 @@ class PagesController extends Controller
         $product= Producto::findOrFail($id);
         $cats = Categoria::orderBy('nombre','desc')->get();
         $data = ["cats" => $cats, "product" => $product];
+
         return view('forms.formPedit', compact('data'));
     }
+
 
 }

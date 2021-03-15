@@ -44,6 +44,7 @@ Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->name('p
 Route::get('/erp/category/{id}/edit',[PagesController::class, 'editCategory'])->name('category.edit');
 Route::get('/erp/client/{id}/edit',[PagesController::class, 'editClient'])->name('client.edit');
 Route::get('/erp/product/{id}/edit',[PagesController::class, 'editProduct'])->name('product.edit');
+Route::get('/erp/product/{id}',[ProductoController::class, 'productData']);
 
 Route::put('/erp/category/{id}',[CategoriaController::class,'update'])->name('category.update');
 Route::put('/erp/client/{id}',[ClienteController::class,'update'])->name('client.update');

@@ -42,4 +42,32 @@ body {
     margin-bottom: 10px;
 }
 
+#sel{
+    width: 80%;
+}
+
+#client-sel{
+    width: 90%;
+}
+
+.row .det{
+    padding: 0 .75rem;
+    margin: .75rem 0;
+}
+
+.date{
+    width: 100%;
+}
+
+#date-select{
+    width: 100%;
+}
+
+#form-date{
+    width: 100%;
+}
+
+#span-date{
+    width: 90%;
+}
 

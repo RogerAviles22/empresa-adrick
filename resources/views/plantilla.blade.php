@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-sidebar.css')}}" />
         <link rel="icon" type="image/png" href="{{ asset('img/cart.png') }}" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="d-flex" id="wrapper">

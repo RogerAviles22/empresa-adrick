@@ -1,4 +1,10 @@
 @extends('plantilla')
+
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endsection
+
 @section('seccion')
 <div class="d-flex justify-content-between align-items-center mt-2">
     <h1>Bienvenido Usuario</h1>
@@ -72,7 +78,7 @@
 
     </div>
     <div class="card-footer ">
-        <button type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</button>
+        <a href="{{route('sale.add')}}" type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</a>
         <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
       </div>
   </div>

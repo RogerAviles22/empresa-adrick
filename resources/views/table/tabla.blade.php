@@ -52,7 +52,7 @@
     </div>
     <div class="card-footer ">
         <a type="button" class="btn btn-info fw-bold" href="{{route('category.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
-        <a type="button" class="btn btn-success fw-bold" > <i class="bi bi-arrow-repeat"></i> Actualizar</a>
+        <a type="button" class="btn btn-success fw-bold" href="{{ route('tabla') }}"> <i class="bi bi-arrow-repeat"></i> Actualizar</a>
       </div>
   </div>
 @endsection

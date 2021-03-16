@@ -85,8 +85,14 @@ Las rutas de vital importancia estarán en los sgtes carpetas:
 # Recomendaciones
 Si en algún momento no se reflejan los cambios en pantalla, presionar Shift + Ctrl +R 
 
-Eliminar mensaje en phpAdmin, esto puede ser causado por las cookies generadas del proyecto
+Eliminar mensaje en phpAdmin, esto puede ser causado por las cookies generadas del proyecto... o simplemente abrirlo en otro navegador.
 - [Eliminar cookies](https://stackoverflow.com/questions/56537958/phpmyadmin-is-suddenly-showing-errors/56538632)
 - [(x) Se detectaron algunos errores en el servidor](https://stackoverflow.com/questions/27370372/phpmyadmin-pop-up-error-notice-keeps-appearing-when-clicking-on-columns-of-datab)
 
 - [Mostrar user logueado](https://es.stackoverflow.com/questions/160151/c%C3%B3mo-obtener-los-datos-del-usuario-logueado-con-laravel-auth)
+
+- [Personalizar Login](https://dev.to/kingsconsult/customize-laravel-auth-laravel-breeze-registration-and-login-1769)
+
+Traducir mensajes error English/Spanish
+- [Tutorial](https://www.youtube.com/watch?v=SWg4A7SsRkU)
+- [Repositorio](https://github.com/Laraveles/spanish)

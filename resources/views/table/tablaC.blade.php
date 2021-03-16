@@ -60,9 +60,9 @@
             </tbody>
             </table>
     </div>
-    <div class="card-footer ">
+    <div class="card-footer "> 
         <a type="button" class="btn btn-info fw-bold" href="{{route('client.add')}}"><i class="bi bi-plus"></i> Nuevo Registro</a>
-        <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
+        <a type="button" class="btn btn-success fw-bold" href="{{ route('tablaC') }}"><i class="bi bi-arrow-repeat"></i> Actualizar</a>
       </div>
   </div>
 @endsection

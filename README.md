@@ -35,6 +35,10 @@ En caso de haber actualizado un campo de algún registro, con este comando lo ac
 ```
 php artisan migrate:fresh
 ```
+Crear Listener para almacenar ultima fecha conectado
+```
+php artisan make:listener LoginListener
+```
 Eloquent: Mapeador relacional de objetos (ORM) que hace que sea agradable interactuar con su base de datos. Cuando se usa Eloquent, cada tabla de la base de datos tiene un "Modelo" correspondiente que se usa para interactuar con esa tabla. Además de recuperar registros de la tabla de la base de datos, los modelos Eloquent le permiten insertar, actualizar y eliminar registros de la tabla también.
 - [Documentacion Eloquent](https://laravel.com/docs/8.x/eloquent#introduction)
 
@@ -96,3 +100,7 @@ Eliminar mensaje en phpAdmin, esto puede ser causado por las cookies generadas d
 Traducir mensajes error English/Spanish
 - [Tutorial](https://www.youtube.com/watch?v=SWg4A7SsRkU)
 - [Repositorio](https://github.com/Laraveles/spanish)
+
+Agregar ultima vez conectado y cambiado zona horaria.
+- [Tutorial](https://www.youtube.com/watch?v=v4IRYiylQPs)
+- [SOF](https://stackoverflow.com/questions/43539332/incorrect-time-returned-in-laravel)

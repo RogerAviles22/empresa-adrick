@@ -38,12 +38,12 @@
                 <tbody>
                     @foreach ($sales as $sale)
                         <tr>
-                            <td>boton +</td>
-                            <td>{{$sale->id}}</td>
+                            <td><a class="boton-plus text-center" href=""><i class="bi bi-plus"></i></a></td>
+                            <td>000{{$sale->id}}</td>
                             <td>{{$sale->nombre}} {{$sale->apellido}}</td>
                             <td>{{$sale->fecha}}</td>
-                            <td>{{$sale->total}}/1.12</td>
-                            <td>({{$sale->total}}-({{$sale->total}}/1.12))</td>
+                            <td>{{$sale->subtotal}}</td>
+                            <td>{{$sale->impuesto}}</td>
                             <td>{{$sale->total}}</td>
                             <td>
                                 <div class="d-flex justify-content-start">
@@ -64,7 +64,7 @@
     </div>
     <div class="card-footer ">
         <a href="{{route('sale.add')}}" type="button" class="btn btn-info"><i class="bi bi-plus"></i> Nuevo Registro</a>
-        <button type="button" class="btn btn-success"> <i class="bi bi-arrow-repeat"></i> Actualizar</button>
+        <a href="{{route('tablaV')}}" type="button" class="btn btn-success"><i class="bi bi-arrow-repeat"></i> Actualizar</a>
       </div>
   </div>
 @endsection

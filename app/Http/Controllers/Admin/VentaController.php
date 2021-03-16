@@ -16,11 +16,17 @@ class VentaController extends Controller
      */
     public function index()
     {
-        $sales = DB::table('facturas')
+        /*$sales = DB::table('facturas')
                                 ->join('clientes', 'facturas.id_cliente', '=', 'clientes.id')
                                 ->select('clientes.nombre as nombre','clientes.apellido as apellido',
-                                'facturas.id', 'facturas.fecha as fecha', 'facturas.total')
-                                ->get();
+                                'facturas.id', 'facturas.fecha as fecha', 'facturas.total as subtotal', 
+                                'facturas.total as impuesto', 'facturas.total')
+                                ->get();*/
+        $sales = DB::select('select clientes.nombre as nombre, clientes.apellido as apellido, facturas.id as id,
+                            facturas.fecha as fecha, ROUND((facturas.total / 1.12),2) as subtotal, 
+                            ROUND(facturas.total - (facturas.total / 1.12),2 ) as impuesto, facturas.total as total 
+                            from clientes, facturas
+                            where facturas.id_cliente= clientes.id;');
         //return $sales;
         return view('table.tablaV', compact('sales'));
     }

@@ -16,12 +16,13 @@ class CreateProductosTable extends Migration
 
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->text('nom_producto');
             $table->double('precio');
             $table->integer('stock');
+            $table->string('image')->nullable();
 
             $table->bigInteger('id_categoria')->unsigned();
+            $table->timestamps();
         });
 
         Schema::table('productos', function($table) {

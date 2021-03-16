@@ -31,6 +31,10 @@ Para migrar la base de datos:
 ```
 php artisan migrate
 ```
+En caso de haber actualizado un campo de algún registro, con este comando lo actualizas pero eliminando los datos de la base:
+```
+php artisan migrate:fresh
+```
 Eloquent: Mapeador relacional de objetos (ORM) que hace que sea agradable interactuar con su base de datos. Cuando se usa Eloquent, cada tabla de la base de datos tiene un "Modelo" correspondiente que se usa para interactuar con esa tabla. Además de recuperar registros de la tabla de la base de datos, los modelos Eloquent le permiten insertar, actualizar y eliminar registros de la tabla también.
 - [Documentacion Eloquent](https://laravel.com/docs/8.x/eloquent#introduction)
 
@@ -80,3 +84,9 @@ Las rutas de vital importancia estarán en los sgtes carpetas:
 
 # Recomendaciones
 Si en algún momento no se reflejan los cambios en pantalla, presionar Shift + Ctrl +R 
+
+Eliminar mensaje en phpAdmin, esto puede ser causado por las cookies generadas del proyecto
+- [Eliminar cookies](https://stackoverflow.com/questions/56537958/phpmyadmin-is-suddenly-showing-errors/56538632)
+- [(x) Se detectaron algunos errores en el servidor](https://stackoverflow.com/questions/27370372/phpmyadmin-pop-up-error-notice-keeps-appearing-when-clicking-on-columns-of-datab)
+
+- [Mostrar user logueado](https://es.stackoverflow.com/questions/160151/c%C3%B3mo-obtener-los-datos-del-usuario-logueado-con-laravel-auth)

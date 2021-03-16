@@ -37,8 +37,9 @@ class ChartController extends Controller
     }
 
     /*Verificar si es COUNT o SUM del campo 'cantidad' de los productos*/
+    //Cambio por suma de productos comprados en detalle_factura
     private function piechart(){
-        $productos= DB::select('select COUNT(dp.id) as y , p.nom_producto as name
+        $productos= DB::select('select CONVERT ( SUM(dp.cantidad) , UNSIGNED ) as y , p.nom_producto as name
                                 from productos p, detalle_facturas dp, facturas f
                                 where dp.id_factura=f.id and
                                 dp.id_producto=p.id

@@ -10,13 +10,19 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
+/*Se puse en comentario porque al parecer el 'middleware guest' daba problemas 
+ya que al autenticarse y hacer un solo registro, al querer registrar un nuevo usuario,
+este lo redirigia al dashboard y no permitia otro ingreso hasta que des click en logout*/
+/*Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
                 ->name('register');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest');
+                ->middleware('guest');*/
 
+Route::get('/register', [RegisteredUserController::class, 'create'])
+                ->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
                 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

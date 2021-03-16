@@ -33,19 +33,37 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'name' => 'required|string|max:45',
+            'apellido' => 'required|string|max:45',
+            'nom_usuario' => 'required|string|string|max:50',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|min:4',
         ]);
+
+        $nombre_archivo= $this->get_images($request);
 
         Auth::login($user = User::create([
             'name' => $request->name,
+            'apellido' => $request->apellido,
+            'nom_usuario' => $request->nom_usuario,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'image' => $nombre_archivo
         ]));
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::USER);
+        //return back();
+    }
+
+    private function get_images(Request $request){
+        if ($request->hasFile('image')){
+            $file           = $request->file("image");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/usuario/"),$nombrearchivo);
+            return $nombrearchivo;
+        }        
+        return null;
     }
 }

@@ -123,15 +123,15 @@
                                     </div>
                                 <div class="mb-3">
                                     <label for="nombrecategory" class="form-label"><strong>Subtotal:</strong></label>
-                                    <input type="text" disabled class="form-control " name="nombre" id="" >
+                                    <input type="number" value="0" disabled class="form-control " name="nombre" id="subtotal" >
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombrecategory" class="form-label"><strong>Iva 12%:</strong></label>
-                                    <input type="text" disabled class="form-control " name="nombre" id="" >
+                                    <input type="number" value="0" disabled class="form-control " name="nombre" id="iva" >
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombrecategory" class="form-label"><strong>Total:</strong></label>
-                                    <input type="text" disabled class="form-control " name="nombre" id="" >
+                                    <input type="text" disabled class="form-control " name="nombre" id="" readonly>
                                 </div>
                             </div>
                         </form>
@@ -170,13 +170,55 @@ $("#sel").select2({
                 format:'DD/MM/YYYY'
             });
         });
+        var cont = 0;
 
+        function productDelete(ctl) {
+            var t = $('#items-table').DataTable();
+            var t2 = 0.00;
+            var t1 = 0.00;
+            t2 = parseFloat($(ctl).parents("tr").find(":nth-child(6)").find(":first-child").val()).toFixed(2);
+            t.row($(ctl).parents("tr")).remove().draw();
+            var t1 = parseFloat($("#subtotal").val()).toFixed(2);
+            t1 = parseFloat(t1);
+            t2 = parseFloat(t2);
+            console.log(typeof(t2));
+            console.log(t2);
+            var s = parseFloat(t1-t2).toFixed(2);
+            $("#subtotal").val(parseFloat(t1-t2).toFixed(2));
+            $("#iva").val(parseFloat(s*0.12).toFixed(2));
+            cont--;
+
+        }
+
+        function updateSub(val){
+            var bef = $(val).parents("tr").find(":nth-child(6)").find(":first-child").val();
+            var subtotalb = parseFloat($("#subtotal").val()).toFixed(2)-parseFloat(bef).toFixed(2);
+            //console.log($(val).parents("tr").find(":nth-child(4)").text());
+            let precio = parseFloat($(val).parents("tr").find(":nth-child(4)").text());
+            //console.log(precio);
+            $(val).parents("tr").find(":nth-child(6)").find(":first-child").val((precio*val.value).toFixed(2));
+            var s = subtotalb+(precio*val.value);
+            $("#subtotal").val(parseFloat(s).toFixed(2));
+            $("#iva").val(parseFloat(s*0.12).toFixed(2));
+
+        }
+
+
+
+        function updateIva(val){
+
+            $("#iva").val(val.value*0.12);
+            console.log(val.value*0.12)
+        }
+
+        $("#subtotal").attr("onchange","updateIva(this);")
 
   function change(){
     var sel = document.getElementById("sel");
     var seleccionado = sel.options[sel.selectedIndex].value;
     console.log(seleccionado);
     var data ;
+
     $.ajax({
 
                   url: '/erp/product/'+seleccionado,
@@ -186,9 +228,18 @@ $("#sel").select2({
                    success: function(response){
                         data = response.data;
                         console.log(response);
+                        cont++;
+                        console.log(cont);
                         var t = $('#items-table').DataTable();
-                        t.row.add(["<button type='submit' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",response[0]["nom_producto"],response[0]["nombre"],response[0]["precio"],"<input id='number' value=1 type='number' style=width:60%>",response[0]["precio"]]).draw( false );
-                        // document.getElementById("datos").innerHTML+=`<tr> <td></td> <td> ${response[0]["nom_producto"]} </td> <td> ${response[0]["nombre"]} </td> <td> ${response[0]["precio"]} </td> </tr>`
+                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",response[0]["nom_producto"],response[0]["nombre"],response[0]["precio"],"<input class='canti' onchange='updateSub(this);' ' value=0 type='number' style=width:60%>", "<input  readOnly type='number' value='0'> </input>" ]).draw();
+
+
+
+
+                        $(`#datos :nth-child(${cont}) :nth-child(3) `).attr("value",response[0]["id_categoria"])
+                        $(`#datos :nth-child(${cont}) :nth-child(4) `).attr("class","prize")
+
+
 
             }
 
@@ -233,6 +284,3 @@ $("#sel").select2({
     @endif
     <script src="{{ asset('js/alerts.js') }}"></script>
 @endsection
-
-
-

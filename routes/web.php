@@ -47,11 +47,12 @@ Route::get('/erp/category/{id}/edit',[PagesController::class, 'editCategory'])->
 Route::get('/erp/client/{id}/edit',[PagesController::class, 'editClient'])->name('client.edit');
 Route::get('/erp/product/{id}/edit',[PagesController::class, 'editProduct'])->name('product.edit');
 Route::get('/erp/product/{id}',[ProductoController::class, 'productData']);
+Route::get('/erp/user/{id}',[UserController::class,'edit'])->name('user.edit');
 
 Route::put('/erp/category/{id}',[CategoriaController::class,'update'])->name('category.update');
 Route::put('/erp/client/{id}',[ClienteController::class,'update'])->name('client.update');
 Route::put('/erp/producto/{id}',[ProductoController::class,'update'])->name('product.update');
-
+Route::put('/erp/user/{id}',[UserController::class,'update'])->name('user.update');
 
 Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->name('category.destroy');
 Route::delete('/erp/product/delete/{id}', [ProductoController::class, 'destroy'])->name('product.destroy');

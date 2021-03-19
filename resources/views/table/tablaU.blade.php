@@ -49,7 +49,7 @@
                                 <td>nel</td>
                             <td>
                                 <div class="d-flex justify-content-start">
-                                    <a type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a type="button" href="{{ route('user.edit', $user) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                     <form class="items-delete" action="{{ route('user.destroy', $user->id) }}"  method="POST">
                                         @method('DELETE')
                                         @csrf

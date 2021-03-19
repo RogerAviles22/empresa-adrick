@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -57,21 +58,39 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('forms.formUedit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $newU = User::findOrFail($id);
+        $newU->name = $request->name;
+        $newU->apellido = $request->apellido;
+        $newU->email = $request->email;
+        $newU->nom_usuario = $request->nom_usuario;
+        $newU->image = $this->get_images($request);
+        $newU->password = Hash::make($request->password);
+        $newU->save();
+        return redirect()->route('tablaU');
+    }
+
+    private function get_images(Request $request){
+        if ($request->hasFile('image')){
+            $file           = $request->file("image");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/usuario/"),$nombrearchivo);
+            return $nombrearchivo;
+        }        
+        return null;
     }
 
     /**

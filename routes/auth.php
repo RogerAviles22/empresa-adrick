@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
 /*Se puse en comentario porque al parecer el 'middleware guest' daba problemas 
@@ -20,9 +21,10 @@ este lo redirigia al dashboard y no permitia otro ingreso hasta que des click en
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware('guest');*/
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
+Route::get('/user', [RegisteredUserController::class, 'create'])
                 ->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::post('/user', [RegisteredUserController::class, 'store']);
+
                 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

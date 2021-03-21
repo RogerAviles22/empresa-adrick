@@ -20,13 +20,6 @@ este lo redirigia al dashboard y no permitia otro ingreso hasta que des click en
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware('guest');*/
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/user', [RegisteredUserController::class, 'create'])
-                ->name('register');
-    Route::post('/user', [RegisteredUserController::class, 'store']);
-});
-
-
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
@@ -34,6 +27,18 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 
 Route::post('/', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/user', [RegisteredUserController::class, 'create'])
+            ->middleware('can:register')->name('register');
+
+    Route::post('/user', [RegisteredUserController::class, 'store'])
+            ->middleware('can:register');
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
+});
 
 /*Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
@@ -76,7 +81,3 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
                 ->middleware('auth');
-
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->middleware('auth')
-                ->name('logout');

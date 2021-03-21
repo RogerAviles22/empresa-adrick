@@ -45,14 +45,14 @@ class RegisteredUserController extends Controller
 
         $nombre_archivo= $this->get_images($request);
 
-        Auth::login($user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'apellido' => $request->apellido,
             'nom_usuario' => $request->nom_usuario,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'image' => $nombre_archivo
-        ]));
+        ]);
 
         $user->roles()->sync($request->rol); //Asignamos el rol al usuario
 

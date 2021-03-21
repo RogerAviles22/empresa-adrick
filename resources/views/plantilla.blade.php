@@ -24,13 +24,13 @@
             <div class="border-right " id="sidebar-wrapper">
               <div class="sidebar-heading "><a id="adrick" href="{{ route('dashboard') }}"><i id="carrito" class="bi bi-cart"></i>Adrick' JR</a></div>
               <hr>
-              <div>
-                <div id="user" class="user">{{ auth()->user()->nom_usuario }}</div>
+              <div class="d-flex justify-content-evenly align-items-center py-2">
                 @if(is_null(auth()->user()->image))
-                    <img src="{{ asset('img/empty.png') }} " alt="user->image" class="img-fluid" width="25px">
+                    <img src="{{ asset('img/empty.png') }} " alt="user->image" class="img-fluid" width="35px">
                 @else 
-                    <img src="{{ asset('img/usuario/'.auth()->user()->image) }} " alt="user->image" class="img-fluid" width="25px">
+                    <img src="{{ asset('img/usuario/'.auth()->user()->image) }} " alt="user->image" class="img-fluid" width="35px">
                 @endif
+                <div id="user" class="user">{{ auth()->user()->nom_usuario }}</div>
               </div>
               <hr>
               <p id="mant" class="my-3 ps-2">Mantenimiento</p>

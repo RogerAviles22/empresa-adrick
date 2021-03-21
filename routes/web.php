@@ -42,6 +42,7 @@ Route::get('/erp/user/add', [PagesController::class, 'formUser'])->name('user.ad
 Route::post('/erp/category/add', [PagesController::class, 'addCategory'])->name('category.create');
 Route::post('/erp/client/add', [PagesController::class, 'addClient'])->name('client.create');
 Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->name('product.create');
+Route::post('/erp/sale/add', [PagesController::class, 'addSale'])->name('sale.create');
 
 Route::get('/erp/category/{id}/edit',[PagesController::class, 'editCategory'])->name('category.edit');
 Route::get('/erp/client/{id}/edit',[PagesController::class, 'editClient'])->name('client.edit');

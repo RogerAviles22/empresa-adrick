@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Producto;
+use App\Models\Factura;
+use App\Models\DetalleFactura;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -90,6 +93,35 @@ class PagesController extends Controller
         $newP->stock = $request->input('stock');
         $newP->save();
         return redirect()->route('tablaP');
+    }
+
+    public function addSale(Request $request){
+        $newF = new Factura;
+        $fecha = date('Y-m-d',strtotime($request->input('fechafac')));
+        $newF->fecha = $fecha;
+        $newF->total = floatval($request->input('total'));
+        $newF->id_cliente = $request->input('cliente');
+        $newF->save();
+        for ($i = 0; $i < count($request->id_prods); $i++) {
+            $this->addSaleDetail($request->id_prods[$i],$request->cantidad[$i],$request->totales[$i],$request->precio[$i],$newF->id);
+        }
+        return redirect()->route('tablaV');
+        // $newF->save();
+
+
+    }
+
+    public function addSaleDetail($idp,$cantidad,$total,$precio, $id){
+
+        $newD = new DetalleFactura;
+        $newD->cantidad=$cantidad;
+        $newD->total=$total;
+        $newD->precioUnitario=$precio;
+        $newD->id_factura=$id;
+        $newD->id_producto=$idp;
+        $newD->save();
+
+
     }
 
     public function editCategory($id){

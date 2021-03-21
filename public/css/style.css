@@ -86,3 +86,7 @@ a.boton-plus {
       width: 70%;
       background-color: transparent;
   }
+
+  .esconder{
+      display: none;
+  }

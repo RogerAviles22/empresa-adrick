@@ -34,7 +34,7 @@
                         <i class="bi bi-boxes"></i> Detalle de Producto
                         </div>
                         <div class="card-body">
-                            <form action="{{route('category.create')}}" method="post">
+                            <form action="{{route('sale.create')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="mb-2">
@@ -80,72 +80,72 @@
                                         </tbody>
                                         </table>
                                     </div>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
-                </div>
+                                </div>
 
-                <div  class="det col-lg-4 ">
-                    <div class="card ">
-                        <div class="card-header bg-secondary">
-                        <i class="bi bi-boxes"></i> Datos de la Factura
-                        </div>
-                        <div class="card-body">
-                        <form action="{{route('category.create')}}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="mb-3">
-                                    <label for="nombrecategory" class="form-label"><strong>Fecha Venta:</strong></label>
-                                            <div id="form-date" class="form-group">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <span id="span-date" class="input-group-addon">
-                                                    <input id="date-select" type='text' class="form-control" />
+                                </div>
+                                    </div>
+                                    </div>
+
+                                        <div  class="det col-lg-4 ">
+                                             <div class="card ">
+                                                 <div class="card-header bg-secondary">
+                                                    <i class="bi bi-boxes"></i> Datos de la Factura
+                                                        </div>
+                                                        <div class="card-body">
 
 
-                                                    </span>
+                                            <div class="row">
+                                                <div class="mb-3">
+                                                    <label for="nombrecategory" class="form-label"><strong>Fecha Venta:</strong></label>
+                                                            <div id="form-date" class="form-group">
+                                                                <div class='input-group date' id='datetimepicker1'>
+                                                                    <span id="span-date" class="input-group-addon">
+                                                                    <input class="form-control" name="fechafac" id="date-select" type='text' class="form-control" val="xd" />
+
+
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label for="nombrecategory" class="form-label"><strong>Cliente:</strong></label>
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <select class="form-control" name="cliente" id="client-sel" class="selectpicker" >
+                                                            <option selected disable hidden></option>
+                                                            @foreach($data["clients"] as $cl)
+                                                                <option class="products" value="{{$cl->id}}">{{$cl->nombre}} {{$cl->apellido}}</option>
+                                                            @endforeach
+
+                                                        </select>
+
+                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="nombrecategory" class="form-label"><strong>Subtotal:</strong></label>
+                                                    <input class="form-control" type="number" value="0" disabled class="form-control " name="subtotal" id="subtotal" >
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nombrecategory" class="form-label"><strong>Iva 12%:</strong></label>
+                                                    <input  type="number" value="0" disabled class="form-control " name="iva" id="iva" >
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nombrecategory" class="form-label"><strong>Total:</strong></label>
+                                                    <input type="number" value=0  id="totalfac"  class="form-control " name="total"  readonly>
                                                 </div>
                                             </div>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="nombrecategory" class="form-label"><strong>Cliente:</strong></label>
-
-                                </div>
-                                <div class="mb-3">
-                                    <select id="client-sel" class="selectpicker" >
-                                            <option selected disable hidden></option>
-                                            @foreach($data["clients"] as $cl)
-                                                <option class="products" value="{{$cl->id}}">{{$cl->nombre}} {{$cl->apellido}}</option>
-                                            @endforeach
-
-                                        </select>
 
                                     </div>
-                                <div class="mb-3">
-                                    <label for="nombrecategory" class="form-label"><strong>Subtotal:</strong></label>
-                                    <input type="number" value="0" disabled class="form-control " name="nombre" id="subtotal" >
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="nombrecategory" class="form-label"><strong>Iva 12%:</strong></label>
-                                    <input type="number" value="0" disabled class="form-control " name="nombre" id="iva" >
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nombrecategory" class="form-label"><strong>Total:</strong></label>
-                                    <input type="text" disabled class="form-control " name="nombre" id="" readonly>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    </div>
-                </div>
-        </div>
+                        </div>
 
 
-        <div class="card-footer ">
-            <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
-            <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
-        </div>
-
+                        <div class="card-footer ">
+                            <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
+                            <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
+                        </div>
+        </form>
 
       </div>
 </div>
@@ -186,20 +186,23 @@ $("#sel").select2({
             var s = parseFloat(t1-t2).toFixed(2);
             $("#subtotal").val(parseFloat(t1-t2).toFixed(2));
             $("#iva").val(parseFloat(s*0.12).toFixed(2));
+            $("#totalfac").val(parseFloat($("#subtotal").val())+parseFloat($("#iva").val()));
             cont--;
 
         }
 
         function updateSub(val){
             var bef = $(val).parents("tr").find(":nth-child(6)").find(":first-child").val();
+            console.log(bef);
             var subtotalb = parseFloat($("#subtotal").val()).toFixed(2)-parseFloat(bef).toFixed(2);
             //console.log($(val).parents("tr").find(":nth-child(4)").text());
-            let precio = parseFloat($(val).parents("tr").find(":nth-child(4)").text());
-            //console.log(precio);
+            let precio = parseFloat($(val).parents("tr").find(":nth-child(4)").find(":first-child").val());
+            console.log(precio);
             $(val).parents("tr").find(":nth-child(6)").find(":first-child").val((precio*val.value).toFixed(2));
             var s = subtotalb+(precio*val.value);
             $("#subtotal").val(parseFloat(s).toFixed(2));
             $("#iva").val(parseFloat(s*0.12).toFixed(2));
+            $("#totalfac").val(parseFloat($("#subtotal").val())+parseFloat($("#iva").val()));
 
         }
 
@@ -231,7 +234,7 @@ $("#sel").select2({
                         cont++;
                         console.log(cont);
                         var t = $('#items-table').DataTable();
-                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",response[0]["nom_producto"],response[0]["nombre"],response[0]["precio"],"<input class='canti' onchange='updateSub(this);' ' value=0 type='number' style=width:60%>", "<input  readOnly type='number' value='0'> </input>" ]).draw();
+                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' ' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
 
 
 

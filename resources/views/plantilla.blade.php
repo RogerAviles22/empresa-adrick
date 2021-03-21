@@ -57,7 +57,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <span class="dropdown-header" style="font-size: 12px;">Ultima vez conectado</span>
-                                    <li><a class="dropdown-item"  href="{{ route('user.edit', auth()->id()) }}"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
+                                    <li><a class="dropdown-item"  href=""><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>
                                 </ul>
                             </li>

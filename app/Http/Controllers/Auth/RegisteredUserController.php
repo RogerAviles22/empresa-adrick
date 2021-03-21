@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use Spatie\Permission\Models\Role;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -19,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
 
     /**
@@ -50,6 +53,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'image' => $nombre_archivo
         ]));
+
+        $user->roles()->sync($request->rol); //Asignamos el rol al usuario
 
         //event(new Registered($user));
 

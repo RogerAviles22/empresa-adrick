@@ -27,9 +27,9 @@ Para crear un controller con los métodos sugeridos para crear CRUD, vinculando 
 ```
 php artisan make:controller <Carpeta>/<NameController> --resource --model=<NameModels>
 ```
-Para migrar la base de datos:
+Para migrar la base de datos con los seeders (datos generados automaticamente de categoria, producto y user["admin","1234"]):
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
 En caso de haber actualizado un campo de algún registro, con este comando lo actualizas pero eliminando los datos de la base:
 ```
@@ -48,6 +48,28 @@ Laravel Breeze: Implementación mínima y simple de todas las funciones de auten
 
 Blade es el motor de plantillas simple pero poderoso que se incluye con Laravel.
 - [Documentación](https://laravel.com/docs/8.x/blade#introduction)
+
+# Roles y permisos
+Para roles y permisos, ejecutamos el sgte comando para instalar este paquete.
+```
+composer require spatie/laravel-permission
+```
+- [Documentation Spatie](https://spatie.be/docs/laravel-permission/v4/installation-laravel)
+En vendor/ spatie/ migrations aparecen las tablas necesarias para los roles y permisos, en este video explican brevemente las 5 tablas nuevas:
+- [Tutorial 1:10](https://www.youtube.com/watch?v=L42lLOOLB8g)
+Entonces, para ubicar dichas tablas en la carpeta de las migraciones, ejecutamos
+```
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+Los Seeders nos ayudarán a crear datos en la base cuando el programa se ejecute
+```
+php artisan make:seeder "nameSeeder"
+```
+Creado los roles y sus permisos, ejecutamos el sgte comando para actualizar las migraciones y los seeders.
+```
+php artisan migrate:fresh --seed
+```
+
 
 # Librerías
 SweetAlert: A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES

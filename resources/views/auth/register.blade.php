@@ -60,6 +60,16 @@
                 <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" />
             </div>
 
+            <!-- Roles -->
+            <div class="mt-4">
+                Grupos
+                <select name="rol" class="form-select" id="form-categorias" required>
+                  @foreach ($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                  @endforeach
+                </select> 
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Contraseña')" />

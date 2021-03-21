@@ -13,6 +13,15 @@
     <div class="card-header bg-secondary">
       <i class="bi bi-plus"></i> Edición de un Cliente
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>                    
+                @endforeach
+            </ul>
+        </div>        
+    @endif
     <div class="card-body">
         <form action="{{ route('user.update', [ $user->id ]) }}" method="post" enctype="multipart/form-data">
             @method('put')
@@ -34,13 +43,31 @@
                     <label for="username" class="form-label">Nombre de usuario:</label>
                     <input type="text" class="form-control" name="nom_usuario" id="username" placeholder="Ingrese contraseña" value="{{$user->nom_usuario}}" required>
                 </div>
+                <div class="mb-3">                    
+                    <label for="imageuser" class="form-label d-flex justify-content-start">Imagen: {{$user->image}}
+                        <div class="form-check ms-4">
+                            <label class="form-check-label" for="flexCheckDefault">Limpiar</label>
+                            <input class="form-check-input" name="limpiar" type="checkbox" value="limpiar" id="flexCheckDefault">
+                        </div>
+                    </label>
+                    <input type="file" class="form-control" name="image" id="imageuser">
+                </div>
+                <!-- Roles -->
+                <div class="mb-3">
+                    Grupos
+                    <select name="rol" class="form-select" id="form-roles" required>
+                    @foreach ($roles as $rol)
+                        @if($rol_actual[0]->id == $rol->id)
+                            <option selected value="{{$rol->id}}">{{$rol->name}}</option>
+                        @else                            
+                            <option value="{{$rol->id}}">{{$rol->name}}</option>
+                        @endif
+                    @endforeach
+                    </select> 
+                </div>
                 <div class="mb-3">
                     <label for="passwordcategory" class="form-label">Contraseña:</label>
                     <input type="password" class="form-control" name="password" id="passwordcategory" placeholder="Ingrese contraseña" value="{{$user->password}}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="imageuser" class="form-label">Imagen: {{$user->image}}</label>
-                    <input type="file" class="form-control" name="image" id="imageuser">
                 </div>
             </div>
             <div class="card-footer ">
@@ -51,3 +78,18 @@
 
   </div>
 @endsection
+
+<!--script>
+    window.onload=function(){
+        let check_password = document.getElementById("flexCheckChange");
+        let input_password = document.getElementById("passworduser");
+
+        check_password.addEventListener("change", () => {
+            console.log("press")
+            if(input_password.disabled== true)
+                input_password.disabled = false
+            else
+                input_password.disabled = true
+        });
+    }
+</script>

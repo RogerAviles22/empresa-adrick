@@ -24,7 +24,14 @@
             <div class="border-right " id="sidebar-wrapper">
               <div class="sidebar-heading "><a id="adrick" href="{{ route('dashboard') }}"><i id="carrito" class="bi bi-cart"></i>Adrick' JR</a></div>
               <hr>
-              <div id="user" class="user">USUARIO</div>
+              <div>
+                <div id="user" class="user">{{ auth()->user()->nom_usuario }}</div>
+                @if(is_null(auth()->user()->image))
+                    <img src="{{ asset('img/empty.png') }} " alt="user->image" class="img-fluid" width="25px">
+                @else 
+                    <img src="{{ asset('img/usuario/'.auth()->user()->image) }} " alt="user->image" class="img-fluid" width="25px">
+                @endif
+              </div>
               <hr>
               <p id="mant" class="my-3 ps-2">Mantenimiento</p>
               <div class="list-group list-group-flush">
@@ -57,7 +64,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <span class="dropdown-header" style="font-size: 12px;">Ultima vez conectado</span>
-                                    <li><a class="dropdown-item"  href=""><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
+                                    <li><a class="dropdown-item"  href="{{ route('user.edit', auth()->id()) }}"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>
                                 </ul>
                             </li>

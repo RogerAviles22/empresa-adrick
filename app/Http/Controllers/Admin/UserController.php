@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
+use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     /**
@@ -54,14 +56,16 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('forms.formUedit', compact('user'));
+        $roles = Role::all();
+        $rol_actual = DB::select("select model_has_roles.role_id as id
+                            from model_has_roles
+                            where model_has_roles.model_id = ".$id);
+        //return  $rol_actual[0]->id;
+        return view('forms.formUedit', compact('user','roles','rol_actual'));
     }
 
     /**
@@ -72,25 +76,47 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:45',
+            'apellido' => 'required|string|max:45',
+            'nom_usuario' => 'required|string|string|max:50',
+            'email' => 'required|string|email|max:100',
+            'password' => 'required|string|min:4',
+        ]);
+
         $newU = User::findOrFail($id);
         $newU->name = $request->name;
         $newU->apellido = $request->apellido;
         $newU->email = $request->email;
         $newU->nom_usuario = $request->nom_usuario;
-        $newU->image = $this->get_images($request);
-        $newU->password = Hash::make($request->password);
+        $this->change_password($request, $newU);
+        $newU->image = $this->get_images($request, $newU);
         $newU->save();
+        $newU->roles()->sync($request->rol); //Asignamos el rol al usuario
         return redirect()->route('tablaU');
     }
 
-    private function get_images(Request $request){
-        if ($request->hasFile('image')){
+    private function change_password(Request $request, User $user){
+        if( strcmp($request->password, $user-> password) == 0 ){
+            $user->password = $user->password;
+        }
+        else{
+            $user->password = Hash::make($request->password);  
+        }          
+    }
+
+    private function get_images(Request $request, User $user){
+        if( $request->get('limpiar') == "limpiar" )
+            return null;
+        else if ($request->hasFile('image') ){
             $file           = $request->file("image");
             $nombrearchivo  = $file->getClientOriginalName();
             $file->move(public_path("img/usuario/"),$nombrearchivo);
             return $nombrearchivo;
         }        
-        return null;
+        else{
+            return $user->image;
+        }
     }
 
     /**

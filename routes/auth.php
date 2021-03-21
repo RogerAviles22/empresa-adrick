@@ -20,10 +20,12 @@ este lo redirigia al dashboard y no permitia otro ingreso hasta que des click en
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware('guest');*/
-
-Route::get('/user', [RegisteredUserController::class, 'create'])
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/user', [RegisteredUserController::class, 'create'])
                 ->name('register');
-Route::post('/user', [RegisteredUserController::class, 'store']);
+    Route::post('/user', [RegisteredUserController::class, 'store']);
+});
+
 
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])

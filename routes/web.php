@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/erp/client', [ClienteController::class, 'index'])->middleware('can:tablaC')->name('tablaC');
     Route::get('/erp/sale', [VentaController::class, 'index'])->middleware('can:tablaV')->name('tablaV');
     Route::get('/erp/user', [UserController::class, 'index'])->middleware('can:tablaU')->name('tablaU');
-    
+
 
     Route::get('/erp/category/add', [PagesController::class, 'formCategory'])->middleware('can:category.add')->name('category.add');
     Route::get('/erp/product/add', [PagesController::class, 'formProduct'])->middleware('can:product.add')->name('product.add');
@@ -49,7 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/erp/category/{id}/edit',[PagesController::class, 'editCategory'])->middleware('can:category.edit')->name('category.edit');
     Route::get('/erp/client/{id}/edit',[PagesController::class, 'editClient'])->middleware('can:client.edit')->name('client.edit');
     Route::get('/erp/product/{id}/edit',[PagesController::class, 'editProduct'])->middleware('can:product.edit')->name('product.edit');
+    Route::get('/erp/sale/{id}/edit',[PagesController::class, 'editSale'])->middleware('can:product.edit')->name("sale.edit");
     Route::get('/erp/product/{id}',[ProductoController::class, 'productData']);
+
     Route::get('/erp/user/{id}',[UserController::class,'edit'])->middleware('can:user.edit')->name('user.edit');
 
     Route::put('/erp/category/{id}',[CategoriaController::class,'update'])->middleware('can:category.update')->name('category.update');

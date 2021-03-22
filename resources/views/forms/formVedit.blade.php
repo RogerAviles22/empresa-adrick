@@ -76,7 +76,16 @@
                                             </tr>
                                         </thead>
                                         <tbody id="datos">
-
+                                            @foreach($data["detalles"] as $df)
+                                            <tr>
+                                                <td><button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button></td>
+                                                <td><input class="esconder" value="{{$df->nom_producto}}" name="id_prods[]">{{$df->nom_producto}}</input></td>
+                                                <td></input>{{$df->nombre}}</td>
+                                                <td><input  value="{{$df->precioUnitario}}" name="precio[]"></input></td>
+                                                <td><input name='cantidad[]' class='canti' onchange="updateSub(this);"  value="{{$df->cantidad}}" type='number' style=width:70%></td>
+                                                <td><input name='totales[]'  readOnly type='number' value={{bcadd($df->total,'0',2)}}> </input></td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                         </table>
                                     </div>
@@ -100,7 +109,7 @@
                                                             <div id="form-date" class="form-group">
                                                                 <div class='input-group date' id='datetimepicker1'>
                                                                     <span id="span-date" class="input-group-addon">
-                                                                    <input class="form-control" name="fechafac" id="date-select" type='text' class="form-control" val="xd" />
+                                                                    <input class="form-control" name="fechafac" id="date-select" type='text' class="form-control" value={{$data["venta"]["fecha"]}} />
 
 
                                                                     </span>
@@ -115,6 +124,10 @@
                                                     <select class="form-control" name="cliente" id="client-sel" class="selectpicker" >
                                                             <option selected disable hidden></option>
                                                             @foreach($data["clients"] as $cl)
+                                                                @if($cl["id"]==$data["venta"]["id_cliente"])
+                                                                <option selected class="products" value="{{$cl->id}}">{{$cl->nombre}} {{$cl->apellido}}</option>
+
+                                                                @endif
                                                                 <option class="products" value="{{$cl->id}}">{{$cl->nombre}} {{$cl->apellido}}</option>
                                                             @endforeach
 
@@ -123,15 +136,15 @@
                                                     </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Subtotal:</strong></label>
-                                                    <input class="form-control" type="number" value="0" disabled class="form-control " name="subtotal" id="subtotal" >
+                                                    <input class="form-control" type="number" value={{$data["venta"]["total"]/1.12}} disabled class="form-control" step='0.01' name="subtotal" id="subtotal" >
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Iva 12%:</strong></label>
-                                                    <input  type="number" value="0" disabled class="form-control " name="iva" id="iva" >
+                                                    <input value={{(($data["venta"]["total"]/1.12)*12/100)}} type="number" disabled class="form-control " name="iva" id="iva" >
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Total:</strong></label>
-                                                    <input type="number" value=0  id="totalfac"  class="form-control " name="total"  readonly>
+                                                    <input type="number" value={{$data["venta"]["total"]}}  id="totalfac"  class="form-control " name="total"  readonly>
                                                 </div>
                                             </div>
 
@@ -167,9 +180,14 @@ $("#sel").select2({
 
   $(function() {
             $('#datetimepicker1').datetimepicker({
-                format:'YYYY-MM-DD'
+                format:'YYYY-MM-DD',
+
+                //setDate: $(this).val()
             });
+
         });
+
+
         var cont = 0;
 
         function productDelete(ctl) {
@@ -234,7 +252,7 @@ $("#sel").select2({
                         cont++;
                         console.log(cont);
                         var t = $('#items-table').DataTable();
-                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' ' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
+                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
 
 
 

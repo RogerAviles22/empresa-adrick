@@ -47,7 +47,7 @@
                             <td>{{$sale->total}}</td>
                             <td>
                                 <div class="d-flex justify-content-start">
-                                    <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                    <a href="{{route('sale.edit',$sale->id)}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                     <form class="items-delete" action="{{ route('sale.destroy', $sale->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf

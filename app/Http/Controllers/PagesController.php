@@ -142,5 +142,23 @@ class PagesController extends Controller
         return view('forms.formPedit', compact('data'));
     }
 
+    public function editSale($id){
+
+        $venta = Factura::findOrFail($id);
+
+        $clients = CLiente::orderBy('nombre','desc')->get();
+        $products = Producto::orderBy('nom_producto','desc')->get();
+        $detalle_facturas =DB::table("detalle_facturas")
+                                                        ->join('productos', 'detalle_facturas.id_producto', '=', 'productos.id')
+                                                        ->join('categorias', 'productos.id_categoria', '=', 'categorias.id')
+                                                        ->select("detalle_facturas.*",'productos.nom_producto','categorias.nombre')
+                                                        ->where("detalle_facturas.id_factura", "=",$id)
+                                                        ->get();
+        $data = ["venta"=>$venta, "detalles"=>$detalle_facturas, "clients"=>$clients,
+        "products"=>$products];
+        //echo var_dump($data["venta"]);
+        return view('forms.formVedit', compact('data'));
+    }
+
 
 }

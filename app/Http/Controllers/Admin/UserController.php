@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+
 
 use Spatie\Permission\Models\Role;
 class UserController extends Controller
@@ -89,14 +92,14 @@ class UserController extends Controller
         $newU->apellido = $request->apellido;
         $newU->email = $request->email;
         $newU->nom_usuario = $request->nom_usuario;
-        $this->change_password($request, $newU);
+        $this->detect_change_password($request, $newU);
         $newU->image = $this->get_images($request, $newU);
         $newU->save();
         $newU->roles()->sync($request->rol); //Asignamos el rol al usuario
         return redirect()->route('tablaU');
     }
 
-    private function change_password(Request $request, User $user){
+    private function detect_change_password(Request $request, User $user){
         if( strcmp($request->password, $user-> password) == 0 ){
             $user->password = $user->password;
         }
@@ -122,13 +125,26 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return back()->with('eliminar','ok');
+    }
+
+    public function change_password(){
+        return view("forms.formPassword");
+    }
+
+    public function change(Request $request){
+        $request->validate([
+            'password' => 'required|string|min:4|confirmed',
+        ]);
+        $userPass = Auth::user();
+        $user = User::findOrFail($userPass->id);
+        $user->password = Hash::make($request->password); 
+        $user->save();
+        return back()-> with('exito', 'Cambio de contraseña actualizado exitosamente!');
     }
 }

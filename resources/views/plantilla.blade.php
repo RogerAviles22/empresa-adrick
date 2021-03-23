@@ -30,7 +30,7 @@
                 @else 
                     <img src="{{ asset('img/usuario/'.auth()->user()->image) }} " alt="user->image" class="img-fluid" width="35px">
                 @endif
-                <div id="user" class="user">{{ auth()->user()->nom_usuario }}</div>
+                <div id="user" class="user">{{ auth()->user()->nom_usuario}}</div>
               </div>
               <hr>
               <p id="mant" class="my-3 ps-2">Mantenimiento</p>
@@ -63,9 +63,9 @@
                                     <i class="bi bi-gear-fill"></i>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <span class="dropdown-header" style="font-size: 12px;">Ultima vez conectado</span>
+                                    <span class="dropdown-header" style="font-size: 11px;">Ultima vez conectado {{ auth()->user()->last_login}}</span>
                                     <li><a class="dropdown-item"  href="{{ route('user.edit', auth()->id()) }}"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('password.get') }}"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item ">

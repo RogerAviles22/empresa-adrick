@@ -34,7 +34,8 @@
                         <i class="bi bi-boxes"></i> Detalle de Producto
                         </div>
                         <div class="card-body">
-                            <form action="{{route('sale.create')}}" method="post">
+                            <form action="{{route('sale.update',$data['venta']['id'])}}" method="post">
+                            @method('put')
                             @csrf
                             <div class="row">
                                 <div class="mb-2">
@@ -78,9 +79,9 @@
                                         <tbody id="datos">
                                             @foreach($data["detalles"] as $df)
                                             <tr>
-                                                <td><button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button></td>
-                                                <td><input class="esconder" value="{{$df->nom_producto}}" name="id_prods[]">{{$df->nom_producto}}</input></td>
-                                                <td></input>{{$df->nombre}}</td>
+                                                <td><button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><input class="esconder" name="df_ids[]" value={{$df->id}} ><i class='bi bi-trash-fill'></i></input></button></td>
+                                                <td><input class="esconder" value="{{$df->id_producto}}" name="id_prods[]">{{$df->nom_producto}}</input></td>
+                                                <td>{{$df->nombre}}</td>
                                                 <td><input  value="{{$df->precioUnitario}}" name="precio[]"></input></td>
                                                 <td><input name='cantidad[]' class='canti' onchange="updateSub(this);"  value="{{$df->cantidad}}" type='number' style=width:70%></td>
                                                 <td><input name='totales[]'  readOnly type='number' value={{bcadd($df->total,'0',2)}}> </input></td>
@@ -252,7 +253,7 @@ $("#sel").select2({
                         cont++;
                         console.log(cont);
                         var t = $('#items-table').DataTable();
-                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><i class='bi bi-trash-fill'></i></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
+                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><input class='esconder' name='df_ids[]' value=-1><i class='bi bi-trash-fill'></i></input></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
 
 
 

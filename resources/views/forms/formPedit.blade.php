@@ -20,29 +20,30 @@
             <div class="row">
                 <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" value="{{$data['product']->nom_producto}}" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres">
+                    <input type="text" class="form-control" value="{{$data['product']->nom_producto}}" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres" required>
                   </div>
                   <div id="label-cat" class="mb-1">
                     <label for="nombrecategory" class="form-label">Categoría</label>
                   </div>
                   <div class="mb-3">
-                    <select id="select-cat" name="categoria" id="cat">
+                    <select id="select-cat" name="categoria" id="cat" required>
                         @foreach($data['cats'] as $cat)
                             @if($data['product']->id_categoria == $cat->id)
-                            <option disabled value="{{$data['product']->id_categoria}}"  selected>{{$cat->nombre}}</option>
+                            <option selected value="{{$data['product']->id_categoria}}">{{$cat->nombre}}</option>
+                            @else
+                            <option value="{{$cat->id}}">{{$cat->nombre}}</option>
                             @endif
-                        <option value="{{$cat->id}}">{{$cat->nombre}}</option>
                         @endforeach
 
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Precio</label>
-                    <input type="number" step=".01" class="form-control" name="precio" id="nombrecategory" placeholder="Ingrese el precio" value="{{$data['product']->precio}}">
+                    <input type="number" step=".01" class="form-control" name="precio" id="nombrecategory" placeholder="Ingrese el precio" value="{{$data['product']->precio}}" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Stock</label>
-                    <input type="number" class="form-control" name="stock" id="nombrecategory" placeholder="Ingrese cantidad disponible" value="{{$data['product']->stock}}">
+                    <input type="number" class="form-control" name="stock" id="nombrecategory" placeholder="Ingrese cantidad disponible" value="{{$data['product']->stock}}" required>
                   </div>
 
 

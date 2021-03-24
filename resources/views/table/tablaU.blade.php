@@ -40,16 +40,16 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}} {{$user->apellido}}</td>
                             <td>{{$user->nom_usuario}}</td>
-                            <td>{{$user->created_at->toDateString()}}</td>
+                            <td>{{$user->created_at}}</td>
                             @if(is_null($user->image))
                                 <td><img src="{{ asset('img/empty.png') }} " alt="user->image" class="img-fluid" width="25"></td>
                             @else 
                                 <td><img src="{{ asset('img/usuario/'.$user->image) }} " alt="user->image" class="img-fluid" width="25"></td>
                             @endif
-                                <td>nel</td>
+                                <td>{{$user->grupo}}</td>
                             <td>
                                 <div class="d-flex justify-content-start">
-                                    <a type="button" href="{{ route('user.edit', $user) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a type="button" href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                     <form class="items-delete" action="{{ route('user.destroy', $user->id) }}"  method="POST">
                                         @method('DELETE')
                                         @csrf

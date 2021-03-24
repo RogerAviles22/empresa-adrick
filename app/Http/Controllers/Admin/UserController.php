@@ -21,7 +21,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        //$users = User::all();
+        $users = DB::table('users')
+                                ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                                ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+                                ->select('users.*','roles.name as grupo')
+                                ->get(); 
+        //return $users;
         return view('table.tablaU', compact('users'));
     }
 

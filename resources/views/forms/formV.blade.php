@@ -16,14 +16,14 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item" aria-current="page"><a href="{{ route('tabla') }}">Categorías</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a href="{{ route('tablaV') }}">Ventas</a></li>
         </ol>
       </nav>
 </div>
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-secondary">
-          <i class="bi bi-plus"></i> Creación de una categoría
+          <i class="bi bi-plus"></i> Creación de una Venta
         </div>
 
         <div class="card-body">

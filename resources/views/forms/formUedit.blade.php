@@ -11,7 +11,7 @@
 </div>
 <div class="card">
     <div class="card-header bg-secondary">
-      <i class="bi bi-plus"></i> Edición de un Cliente
+      <i class="bi bi-plus"></i> Edición de un Usuario
     </div>
     @if ($errors->any())
         <div class="alert alert-danger">

@@ -100,7 +100,7 @@
                                                             <div id="form-date" class="form-group">
                                                                 <div class='input-group date' id='datetimepicker1'>
                                                                     <span id="span-date" class="input-group-addon">
-                                                                    <input class="form-control" name="fechafac" id="date-select" type='text' class="form-control" val="xd" />
+                                                                    <input class="form-control" name="fechafac" id="date-select" type='text' class="form-control" val="xd" required />
 
 
                                                                     </span>
@@ -123,11 +123,11 @@
                                                     </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Subtotal:</strong></label>
-                                                    <input class="form-control" type="number" value="0" disabled class="form-control " name="subtotal" id="subtotal" >
+                                                    <input class="form-control" type="number" value="0" readonly class="form-control " name="subtotal" id="subtotal" >
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Iva 12%:</strong></label>
-                                                    <input  type="number" value="0" disabled class="form-control " name="iva" id="iva" >
+                                                    <input  type="number" value="0" readonly class="form-control " name="iva" id="iva" >
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="nombrecategory" class="form-label"><strong>Total:</strong></label>

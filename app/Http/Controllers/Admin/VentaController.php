@@ -7,6 +7,7 @@ use App\Models\Factura;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\DetalleFactura;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class VentaController extends Controller
 {
@@ -92,11 +93,16 @@ class VentaController extends Controller
                                         ->get();
         for($i=0; $i<count($detalles); $i++){
 
-            if(in_array($detalles[$i]->id,$request->df_ids)===false){
+            if(array_search($detalles[$i]->id,$request->df_ids)===false){
                 $detail = DetalleFactura::findOrFail($detalles[$i]->id);
                 $detail->delete();
                 //echo "se debe eliminar ".$detalles[$i]->id;
-
+            }else{
+                $i=array_search($detalles[$i]->id,$request->df_ids);
+                $df= DetalleFactura::findOrFail($detalles[$i]->id);
+                $df->cantidad=$request->cantidad[$i];
+                $df->total=$request->totales[$i];
+                $df->save();
             }
 
         }
@@ -140,6 +146,28 @@ class VentaController extends Controller
         $newD->id_producto=$idp;
         $newD->save();
 
+
+    }
+
+    public function imprimir($id){
+        $sales = DB::table('facturas')
+                                    ->join('clientes', 'facturas.id_cliente','=', 'clientes.id')
+                                    ->join('detalle_facturas', 'detalle_facturas.id_factura','=', 'facturas.id')
+                                    ->join('productos', 'detalle_facturas.id_producto','=', 'productos.id')
+                                    ->join('categorias', 'productos.id_categoria','=', 'categorias.id')
+                                    ->select('facturas.id as numfactura','facturas.fecha','facturas.total','categorias.nombre as categoria','productos.nom_producto','clientes.*','detalle_facturas.cantidad as cant','detalle_facturas.precioUnitario as pvp')
+                                    ->where('facturas.id','=',$id)
+                                    ->get();
+
+        $fact = DB::table('facturas')
+                                    ->join('clientes', 'facturas.id_cliente','=', 'clientes.id')
+                                    ->select('facturas.*','clientes.nombre as nombre','clientes.apellido as apellido','clientes.cedula as cedula')
+                                    ->where('facturas.id','=',$id)
+                                    ->get();
+        $data = ["fact"=>$fact, "sales"=>$sales];
+
+        $pdf = PDF::loadView('pdf.reporteVenta', compact('data'));
+        return $pdf->stream();
 
     }
 }

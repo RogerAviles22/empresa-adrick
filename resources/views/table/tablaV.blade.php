@@ -54,7 +54,7 @@
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                                     </form>
                                     <button type="button" class="btn btn-success btn-sm"><i class="bi bi-search"></i></button>
-                                    <button type="button" class="btn btn-primary btn-sm"><i class="bi bi-file-earmark-text-fill"></i></button>
+                                    <a target="_blank" href="{{route('sale.imprimir',$sale->id)}}" type="button" class="btn btn-primary btn-sm"><i class="bi bi-file-earmark-text-fill"></i></a>
                                 </div>
                             </td>
                         </tr>

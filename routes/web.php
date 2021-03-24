@@ -66,6 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/erp/sale/delete/{id}', [VentaController::class, 'destroy'])->middleware('can:sale.destroy')->name('sale.destroy');
     Route::delete('/erp/user/delete/{id}', [UserController::class, 'destroy'])->middleware('can:user.destroy')->name('user.destroy');
 
+    Route::get('/erp/sale/imprimir/{id}',[VentaController::class, 'imprimir'])->name('sale.imprimir');
+
     Route::get('/change/password', [UserController::class, 'change_password'])->name('password.get');
     Route::put('/change/password', [UserController::class, 'change'])->name('password.change');
 });

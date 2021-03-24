@@ -56,18 +56,15 @@
                                 <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Home</a>
                             </li>
                         </ul>
-
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown pr-5">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-gear-fill"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="btn-group dropstart">
+                                <a type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-gear-fill"></i></a>
+                                <ul class="dropdown-menu">
                                     <span class="dropdown-header" style="font-size: 11px;">Ultima vez conectado {{ auth()->user()->last_login}}</span>
                                     <li><a class="dropdown-item"  href="{{ route('user.edit', auth()->id()) }}"><i class="bi bi-pencil-square mr-2"></i> Editar perfil</a></li>
                                     <li><a class="dropdown-item" href="{{ route('password.get') }}"><i class="bi bi-pencil-square mr-2"></i>Editar password</a></li>
                                 </ul>
-                            </li>
+                              </div>
                             <li class="nav-item ">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

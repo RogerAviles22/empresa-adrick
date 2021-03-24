@@ -54,7 +54,7 @@
                                     <div class="mb-3">
                                     <hr>
                                     <br>
-                                        <button type="button" class="btn btn-danger btn-sm btn-flat btnRemove">
+                                        <button id="deleteall" type="button" class="btn btn-danger btn-sm btn-flat btnRemove">
                                         <i class="bi bi-trash"></i>
                                         Eliminar todos mis items
                                         </button>
@@ -83,7 +83,7 @@
                                                 <td><input class="esconder" value="{{$df->id_producto}}" name="id_prods[]">{{$df->nom_producto}}</input></td>
                                                 <td>{{$df->nombre}}</td>
                                                 <td><input  value="{{$df->precioUnitario}}" name="precio[]"></input></td>
-                                                <td><input name='cantidad[]' class='canti' onchange="updateSub(this);"  value="{{$df->cantidad}}" type='number' style=width:70%></td>
+                                                <td><input name='cantidad[]' min=1 class='canti' onchange="updateSub(this);"  value="{{$df->cantidad}}" type='number' style=width:70%></td>
                                                 <td><input name='totales[]'  readOnly type='number' value={{bcadd($df->total,'0',2)}}> </input></td>
                                             </tr>
                                             @endforeach
@@ -189,7 +189,8 @@ $("#sel").select2({
         });
 
 
-        var cont = 0;
+        var cont = $("#datos tr").size();
+        console.log(cont);
 
         function productDelete(ctl) {
             var t = $('#items-table').DataTable();
@@ -253,13 +254,18 @@ $("#sel").select2({
                         cont++;
                         console.log(cont);
                         var t = $('#items-table').DataTable();
-                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><input class='esconder' name='df_ids[]' value=-1><i class='bi bi-trash-fill'></i></input></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' class='canti' onchange='updateSub(this);' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
+                        t.row.add([" <button type='button' onclick='productDelete(this);' class='btn btn-danger btn-sm'><input class='esconder' name='df_ids[]' value=-1><i class='bi bi-trash-fill'></i></input></button>",`<input class="esconder" value=${response[0]["id"]} name="id_prods[]">${response[0]["nom_producto"]}</input>`,`</input>${response[0]["nombre"]}` ,`<input value=${response[0]["precio"]} name="precio[]"></input>`,"<input name='cantidad[]' min=1 class='canti' onchange='updateSub(this);' value=0 type='number' style=width:70%>", "<input name='totales[]'  readOnly type='number' value=0> </input>" ]).draw();
 
 
 
 
-                        $(`#datos :nth-child(${cont}) :nth-child(3) `).attr("value",response[0]["id_categoria"])
+                        $(`#datos :nth-child(${cont}) :nth-child(3) `).attr("value",response[0]["id_categoria"]);
+
                         $(`#datos :nth-child(${cont}) :nth-child(4) `).attr("class","prize")
+                        $(`#datos :nth-child(${cont}) :nth-child(5) :nth-child(1) `).attr("value",1);
+                        var elem = document.querySelector(`#datos :nth-child(${cont}) :nth-child(5) :nth-child(1)`);
+                        elem.setAttribute('value',1);
+                        updateSub((elem));
 
 
 
@@ -273,6 +279,15 @@ $("#sel").select2({
 
     document.getElementById("sel").setAttribute("onchange","change();")
 
+    function deleteAll(){
+
+$("#datos tr").each(function(){
+    productDelete(this.firstElementChild.firstElementChild);
+})
+
+}
+
+$("#deleteall").click(deleteAll);
 
 
 

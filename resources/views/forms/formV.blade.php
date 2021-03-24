@@ -53,7 +53,7 @@
                                     <div class="mb-3">
                                     <hr>
                                     <br>
-                                        <button type="button" class="btn btn-danger btn-sm btn-flat btnRemove">
+                                        <button id="deleteall" type="button" class="btn btn-danger btn-sm btn-flat btnRemove">
                                         <i class="bi bi-trash"></i>
                                         Eliminar todos mis items
                                         </button>
@@ -170,8 +170,8 @@ $("#sel").select2({
                 format:'YYYY-MM-DD'
             });
         });
-        var cont = 0;
-
+        var cont = $("#datos tr").size();
+        console.log(cont);
         function productDelete(ctl) {
             var t = $('#items-table').DataTable();
             var t2 = 0.00;
@@ -198,6 +198,7 @@ $("#sel").select2({
             //console.log($(val).parents("tr").find(":nth-child(4)").text());
             let precio = parseFloat($(val).parents("tr").find(":nth-child(4)").find(":first-child").val());
             console.log(precio);
+            console.log(val.value);
             $(val).parents("tr").find(":nth-child(6)").find(":first-child").val((precio*val.value).toFixed(2));
             var s = subtotalb+(precio*val.value);
             $("#subtotal").val(parseFloat(s).toFixed(2));
@@ -218,6 +219,7 @@ $("#sel").select2({
 
   function change(){
     var sel = document.getElementById("sel");
+    $(".select2-selection__clear").remove();
     var seleccionado = sel.options[sel.selectedIndex].value;
     console.log(seleccionado);
     var data ;
@@ -239,8 +241,15 @@ $("#sel").select2({
 
 
 
-                        $(`#datos :nth-child(${cont}) :nth-child(3) `).attr("value",response[0]["id_categoria"])
+                        $(`#datos :nth-child(${cont}) :nth-child(3) `).attr("value",response[0]["id_categoria"]);
+
                         $(`#datos :nth-child(${cont}) :nth-child(4) `).attr("class","prize")
+                        $(`#datos :nth-child(${cont}) :nth-child(5) :nth-child(1) `).attr("value",1);
+                        var elem = document.querySelector(`#datos :nth-child(${cont}) :nth-child(5) :nth-child(1)`);
+                        elem.setAttribute('value',1);
+                        updateSub((elem));
+
+
 
 
 
@@ -253,6 +262,18 @@ $("#sel").select2({
     }
 
     document.getElementById("sel").setAttribute("onchange","change();")
+
+    function deleteAll(){
+
+        $("#datos tr").each(function(){
+
+            productDelete(this.firstChild.firstChild);
+        })
+
+    }
+
+    $("#deleteall").click(deleteAll);
+
 
 
 

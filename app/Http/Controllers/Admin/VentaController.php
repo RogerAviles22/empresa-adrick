@@ -91,21 +91,38 @@ class VentaController extends Controller
                                         ->select('detalle_facturas.*')
                                         ->where('detalle_facturas.id_factura','=',$id)
                                         ->get();
-        for($i=0; $i<count($detalles); $i++){
 
-            if(array_search($detalles[$i]->id,$request->df_ids)===false){
-                $detail = DetalleFactura::findOrFail($detalles[$i]->id);
-                $detail->delete();
-                //echo "se debe eliminar ".$detalles[$i]->id;
-            }else{
-                $i=array_search($detalles[$i]->id,$request->df_ids);
-                $df= DetalleFactura::findOrFail($detalles[$i]->id);
-                $df->cantidad=$request->cantidad[$i];
-                $df->total=$request->totales[$i];
-                $df->save();
+        if(($request->df_ids)===null){
+            for($i=0; $i<count($detalles); $i++){
+                $df=DetalleFactura::findOrFail($detalles[$i]->id);
+                $df->delete();
+            }
+        }else{
+            for($i=0; $i<count($detalles); $i++){
+
+                if(array_search($detalles[$i]->id,$request->df_ids)===false){
+                    $detail = DetalleFactura::findOrFail($detalles[$i]->id);
+                    $detail->delete();
+                    //echo "se debe eliminar ".$detalles[$i]->id;
+                }else{
+                    $n=array_search($detalles[$i]->id,$request->df_ids);
+                    $df= DetalleFactura::findOrFail($detalles[$n]->id);
+                    $df->cantidad=$request->cantidad[$n];
+                    $df->total=$request->totales[$n];
+                    $df->save();
+                }
+
+            }
+
+            for($i=0;$i<count($request->df_ids);$i++){
+                if($request->df_ids[$i]==-1){
+                    $this->addSaleDetail($request->id_prods[$i],$request->cantidad[$i],$request->totales[$i],$request->precio[$i],$id);
+                }
             }
 
         }
+
+
         $sale = Factura::findOrFail($id);
         $fecha = date('Y-m-d',strtotime($request->input('fechafac')));
         $sale->fecha = $fecha;
@@ -113,11 +130,7 @@ class VentaController extends Controller
         $sale->id_cliente = $request->input('cliente');
         $sale->save();
 
-        for($i=0;$i<count($request->df_ids);$i++){
-            if($request->df_ids[$i]==-1){
-                $this->addSaleDetail($request->id_prods[$i],$request->cantidad[$i],$request->totales[$i],$request->precio[$i],$id);
-            }
-        }
+
         return redirect()->route('tablaV');
 
         //

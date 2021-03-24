@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/erp/client/{id}',[ClienteController::class,'update'])->middleware('can:client.update')->name('client.update');
     Route::put('/erp/producto/{id}',[ProductoController::class,'update'])->middleware('can:product.update')->name('product.update');
     Route::put('/erp/user/{id}',[UserController::class,'update'])->middleware('can:user.update')->name('user.update');
-    Route::put('/erp/sale/{id}',[VentaController::class,'update'])->middleware('can:sale.update')->name('sale.update');
+    Route::put('/erp/sale/{id}',[VentaController::class,'update'])->name('sale.update');
 
     Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->middleware('can:category.destroy')->name('category.destroy');
     Route::delete('/erp/product/delete/{id}', [ProductoController::class, 'destroy'])->middleware('can:product.destroy')->name('product.destroy');

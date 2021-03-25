@@ -37,8 +37,8 @@
                 </thead>
                 <tbody>
                     @foreach ($sales as $sale)
-                        <tr>
-                            <td><a class="boton-plus text-center" href=""><i class="bi bi-plus"></i></a></td>
+                        <tr id="fila{{$sale->id}}">
+                            <td><button onClick="info({{$sale->id}})" class="boton-plus text-center btn-success show" ><i class="bi bi-plus shw"></i></button></td>
                             <td>000{{$sale->id}}</td>
                             <td>{{$sale->nombre}} {{$sale->apellido}}</td>
                             <td>{{$sale->fecha}}</td>
@@ -47,7 +47,7 @@
                             <td>{{$sale->total}}</td>
                             <td>
                                 <div class="d-flex justify-content-start">
-                                    <a href="{{route('sale.edit',$sale->id)}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="{{route('sale.edit',$sale->id)}}" type="button" class="btn btn-warning btn-sm"><i style="font-size:10%" class="bi bi-pencil-square"></i></a>
                                     <form class="items-delete" action="{{ route('sale.destroy', $sale->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -67,6 +67,64 @@
         <a href="{{route('tablaV')}}" type="button" class="btn btn-success"><i class="bi bi-arrow-repeat"></i> Actualizar</a>
       </div>
   </div>
+  <script>
+
+  function deleterows(id){
+
+    $(`tr.fila${id}`).remove();
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").attr("class","boton-plus text-center btn-success show");
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).shw").attr("class","bi bi-plus shw");
+
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").attr("onClick",`info(${id})`);
+
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").unbind('onclick');
+    event.stopPropagation();
+
+
+  }
+
+  function info(id){
+
+
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").attr("onClick",`deleterows(${id})`);
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").attr("class","boton-plus text-center btn-danger show");
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).shw").attr("class","bi bi-dash shw");
+    $("#fila"+id).find(":nth-child(1)").find(":nth-child(1).show").unbind('onclick');
+
+
+    $.ajax({
+
+        url: '/erp/sale/'+id,
+        type: "Get",
+        success: function(response){
+
+            console.log(response);
+
+
+            $("#fila"+id).after(function(){
+                let html = `<tr class='fila${id}'><td colspan='8'><table class='table'><thead class='thead-dark'><tr><th scope='col'>Producto</th><th scope='col'>Categoría</th><th scope='col'>PVP</th><th scope='col'>Cantidad</th><th scope='col'>Subtotal</th></tr></thead><tbody>`
+                for(x=0;x<response.length;x++) {
+                    html += `<tr><td>${response[x]['producto']}</td><td>${response[x]['cat']}</td><td class="text-center">${response[x]['pvp']}</td><td class="text-center">${response[x]['cant']}</td><td class="text-center">${response[x]['total']}</td></tr>`
+                }
+
+                html +="</tbody></table></td>"
+
+                return html;
+            });
+
+
+        }
+
+
+    })
+    event.stopPropagation();
+
+
+
+
+  }
+
+  </script>
 @endsection
 
 @section('js')

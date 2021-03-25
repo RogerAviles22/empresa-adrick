@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/erp/product/{id}/edit',[PagesController::class, 'editProduct'])->middleware('can:product.edit')->name('product.edit');
     Route::get('/erp/sale/{id}/edit',[PagesController::class, 'editSale'])->middleware('can:product.edit')->name("sale.edit");
     Route::get('/erp/product/{id}',[ProductoController::class, 'productData']);
+    Route::get('/erp/sale/{id}',[VentaController::class, 'saleData']);
 
     Route::get('/erp/user/{id}',[UserController::class,'edit'])->middleware('can:user.edit')->name('user.edit');
 
@@ -58,7 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/erp/client/{id}',[ClienteController::class,'update'])->middleware('can:client.update')->name('client.update');
     Route::put('/erp/producto/{id}',[ProductoController::class,'update'])->middleware('can:product.update')->name('product.update');
     Route::put('/erp/user/{id}',[UserController::class,'update'])->middleware('can:user.update')->name('user.update');
-    Route::put('/erp/sale/{id}',[VentaController::class,'update'])->name('sale.update');
+    Route::put('/erp/sale/{id}',[VentaController::class,'update'])->middleware('can:user.update')->name('sale.update');
 
     Route::delete('/erp/category/delete/{id}', [CategoriaController::class, 'destroy'])->middleware('can:category.destroy')->name('category.destroy');
     Route::delete('/erp/product/delete/{id}', [ProductoController::class, 'destroy'])->middleware('can:product.destroy')->name('product.destroy');

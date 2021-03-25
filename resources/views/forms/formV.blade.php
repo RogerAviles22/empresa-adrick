@@ -112,7 +112,7 @@
 
                                                 </div>
                                                 <div class="mb-3">
-                                                    <select class="form-control" name="cliente" id="client-sel" class="selectpicker" >
+                                                    <select class="form-control" name="cliente" id="client-sel" class="selectpicker" required>
                                                             <option selected disable hidden></option>
                                                             @foreach($data["clients"] as $cl)
                                                                 <option class="products" value="{{$cl->id}}">{{$cl->nombre}} {{$cl->apellido}}</option>
@@ -143,7 +143,7 @@
 
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
-                            <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
+                            <a href="{{redirect()->getUrlGenerator()->previous()}}" type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</a>
                         </div>
         </form>
 

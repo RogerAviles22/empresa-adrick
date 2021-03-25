@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" value="{{$category->nombre}}" id="nombrecategory" placeholder="Ingrese un nombre">
+                    <input type="text" class="form-control" name="nombre" value="{{$category->nombre}}" id="nombrecategory" placeholder="Ingrese un nombre" required>
                   </div>
             </div>
             <div class="card-footer ">

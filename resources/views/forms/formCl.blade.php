@@ -19,33 +19,33 @@
             <div class="row">
                 <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Nombres</label>
-                    <input type="text" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres">
+                    <input type="text" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" name="apellido" id="nombrecategory" placeholder="Ingrese los apellidos">
+                    <input type="text" class="form-control" name="apellido" id="nombrecategory" placeholder="Ingrese los apellidos" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Direccion</label>
-                    <input type="text" class="form-control" name="direccion" id="nombrecategory" placeholder="Ingrese una direccion">
+                    <input type="text" class="form-control" name="direccion" id="nombrecategory" placeholder="Ingrese una direccion" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Cedula</label>
-                    <input type="text" class="form-control" name="cedula" id="nombrecategory" placeholder="Ingrese una identificacion">
+                    <input type="text" class="form-control" name="cedula" id="nombrecategory" placeholder="Ingrese una identificacion" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" name="telefono" id="nombrecategory" placeholder="Ingrese un telefono">
+                    <input type="text" class="form-control" name="telefono" id="nombrecategory" placeholder="Ingrese un telefono" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Correo Electronico</label>
-                    <input type="text" class="form-control" name="correo" id="nombrecategory" placeholder="Ingrese un corre">
+                    <input type="text" class="form-control" name="correo" id="nombrecategory" placeholder="Ingrese un correo" required>
                   </div>
 
             </div>
             <div class="card-footer ">
                 <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
-                <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
+                <a href="{{redirect()->getUrlGenerator()->previous()}}" type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</a>
               </div>
         </form>
 

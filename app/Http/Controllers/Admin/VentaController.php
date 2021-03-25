@@ -183,4 +183,16 @@ class VentaController extends Controller
         return $pdf->stream();
 
     }
+
+    public function saleData($id){
+        $info = DB::table('facturas')
+                                    ->join('detalle_facturas','facturas.id','=','detalle_facturas.id_factura')
+                                    ->join('productos','detalle_facturas.id_producto','=', 'productos.id')
+                                    ->join('categorias', 'productos.id_categoria','=', 'categorias.id')
+                                    ->select('productos.nom_producto as producto','detalle_facturas.precioUnitario as pvp','detalle_facturas.total as total','detalle_facturas.cantidad as cant','categorias.nombre as cat')
+                                    ->where('facturas.id','=',$id)
+                                    ->get();
+
+        return $info;
+    }
 }

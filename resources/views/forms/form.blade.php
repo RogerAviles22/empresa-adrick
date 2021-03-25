@@ -19,12 +19,12 @@
             <div class="row">
                 <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese un nombre">
+                    <input type="text" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese un nombre" required>
                   </div>
             </div>
             <div class="card-footer ">
                 <button type="submit" class="btn btn-info fw-bold"><i class="bi bi-plus"></i> Guardar registro</button>
-                <button type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</button>
+                <a href="{{redirect()->getUrlGenerator()->previous()}}" type="button" class="btn btn-success fw-bold"> <i class="bi bi-arrow-repeat"></i>Cancelar</a>
               </div>
         </form>
 

@@ -20,27 +20,27 @@
             <div class="row">
                 <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Nombres</label>
-                    <input type="text" value="{{$client->nombre}}" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres">
+                    <input type="text" value="{{$client->nombre}}" class="form-control" name="nombre" id="nombrecategory" placeholder="Ingrese los nombres" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Apellidos</label>
-                    <input type="text" value="{{$client->apellido}}" class="form-control" name="apellido" id="nombrecategory" placeholder="Ingrese los apellidos">
+                    <input type="text" value="{{$client->apellido}}" class="form-control" name="apellido" id="nombrecategory" placeholder="Ingrese los apellidos" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Direccion</label>
-                    <input type="text" value="{{$client->direccion}}" class="form-control" name="direccion" id="nombrecategory" placeholder="Ingrese una direccion">
+                    <input type="text" value="{{$client->direccion}}" class="form-control" name="direccion" id="nombrecategory" placeholder="Ingrese una direccion" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Cedula</label>
-                    <input type="text" value="{{$client->cedula}}" class="form-control" name="cedula" id="nombrecategory" placeholder="Ingrese una identificacion">
+                    <input type="text" value="{{$client->cedula}}" class="form-control" name="cedula" id="nombrecategory" placeholder="Ingrese una identificacion" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Telefono</label>
-                    <input type="text" value="{{$client->telefono}}" class="form-control" name="telefono" id="nombrecategory" placeholder="Ingrese un telefono">
+                    <input type="text" value="{{$client->telefono}}" class="form-control" name="telefono" id="nombrecategory" placeholder="Ingrese un telefono" required>
                   </div>
                   <div class="mb-3">
                     <label for="nombrecategory" class="form-label">Correo Electronico</label>
-                    <input type="text" value="{{$client->correo_electronico}}" class="form-control" name="correo" id="nombrecategory" placeholder="Ingrese un correo">
+                    <input type="text" value="{{$client->correo_electronico}}" class="form-control" name="correo" id="nombrecategory" placeholder="Ingrese un correo" required>
                   </div>
 
             </div>

@@ -23,9 +23,18 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $newCl = new Cliente;
+        $newCl->nombre = $request->input('nombre');
+        $newCl->apellido = $request->input('apellido');
+        $newCl->direccion = $request->input('direccion');
+        $newCl->cedula = $request->input('cedula');
+        $newCl->telefono = $request->input('telefono');
+        $newCl->correo_electronico = $request->input('correo');
+        $newCl->save();
+        return redirect()->route('tablaC');
     }
 
     /**
@@ -56,9 +65,13 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
         //
+
+            $client= Cliente::findOrFail($id);
+            return view('forms.formCledit', compact('client'));
+
     }
 
     /**

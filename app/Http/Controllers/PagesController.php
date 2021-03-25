@@ -64,36 +64,25 @@ class PagesController extends Controller
         return view('forms.formP',compact('cats'));
     }
 
-    public function addCategory(Request $request){
-        $newCat = new Categoria;
-        $newCat->nombre = $request->input('nombre');
-        $newCat->save();
-        return redirect()->route('tabla');
+    // public function addCategory(Request $request){
+    //     $newCat = new Categoria;
+    //     $newCat->nombre = $request->input('nombre');
+    //     $newCat->save();
+    //     return redirect()->route('tabla');
 
-    }
+    // }
 
-    public function addClient(Request $request){
-        $newCl = new Cliente;
-        $newCl->nombre = $request->input('nombre');
-        $newCl->apellido = $request->input('apellido');
-        $newCl->direccion = $request->input('direccion');
-        $newCl->cedula = $request->input('cedula');
-        $newCl->telefono = $request->input('telefono');
-        $newCl->correo_electronico = $request->input('correo');
-        $newCl->save();
-        return redirect()->route('tablaC');
 
-    }
 
-    public function addProduct(Request $request){
-        $newP = new Producto;
-        $newP->nom_producto = $request->input('nombre');
-        $newP->precio = $request->input('precio');
-        $newP->id_categoria = $request->input('categoria');
-        $newP->stock = $request->input('stock');
-        $newP->save();
-        return redirect()->route('tablaP');
-    }
+    // public function addProduct(Request $request){
+    //     $newP = new Producto;
+    //     $newP->nom_producto = $request->input('nombre');
+    //     $newP->precio = $request->input('precio');
+    //     $newP->id_categoria = $request->input('categoria');
+    //     $newP->stock = $request->input('stock');
+    //     $newP->save();
+    //     return redirect()->route('tablaP');
+    // }
 
     public function addSale(Request $request){
         $newF = new Factura;
@@ -124,23 +113,20 @@ class PagesController extends Controller
 
     }
 
-    public function editCategory($id){
-        $category = Categoria::findOrFail($id);
-        return view('forms.formCedit', compact('category'));
-    }
 
-    public function editClient($id){
-        $client= Cliente::findOrFail($id);
-        return view('forms.formCledit', compact('client'));
-    }
 
-    public function editProduct($id){
-        $product= Producto::findOrFail($id);
-        $cats = Categoria::orderBy('nombre','desc')->get();
-        $data = ["cats" => $cats, "product" => $product];
+    // public function editClient($id){
+    //     $client= Cliente::findOrFail($id);
+    //     return view('forms.formCledit', compact('client'));
+    // }
 
-        return view('forms.formPedit', compact('data'));
-    }
+    // public function editProduct($id){
+    //     $product= Producto::findOrFail($id);
+    //     $cats = Categoria::orderBy('nombre','desc')->get();
+    //     $data = ["cats" => $cats, "product" => $product];
+
+    //     return view('forms.formPedit', compact('data'));
+    // }
 
     public function editSale($id){
 

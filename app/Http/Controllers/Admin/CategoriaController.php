@@ -24,10 +24,17 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $newCat = new Categoria;
+        $newCat->nombre = $request->input('nombre');
+        $newCat->save();
+        return redirect()->route('tabla');
+
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -57,9 +64,11 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
         //
+        $category = Categoria::findOrFail($id);
+        return view('forms.formCedit', compact('category'));
     }
 
     /**

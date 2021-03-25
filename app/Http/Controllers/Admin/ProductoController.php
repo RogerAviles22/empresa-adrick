@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Categoria;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductoController extends Controller
@@ -40,9 +41,16 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $newP = new Producto;
+            $newP->nom_producto = $request->input('nombre');
+            $newP->precio = $request->input('precio');
+            $newP->id_categoria = $request->input('categoria');
+        $newP->stock = $request->input('stock');
+            $newP->save();
+           return redirect()->route('tablaP');
     }
 
     /**
@@ -73,9 +81,12 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
-    {
-        //
+    public function edit($id){
+        $product= Producto::findOrFail($id);
+        $cats = Categoria::orderBy('nombre','desc')->get();
+        $data = ["cats" => $cats, "product" => $product];
+
+        return view('forms.formPedit', compact('data'));
     }
 
     /**

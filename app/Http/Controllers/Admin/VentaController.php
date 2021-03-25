@@ -38,9 +38,22 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+
+    public function create(Request $request){
+        $newF = new Factura;
+        $fecha = date('Y-m-d',strtotime($request->input('fechafac')));
+        $newF->fecha = $fecha;
+        $newF->total = floatval($request->input('total'));
+        $newF->id_cliente = $request->input('cliente');
+        $newF->save();
+        for ($i = 0; $i < count($request->id_prods); $i++) {
+            $this->addSaleDetail($request->id_prods[$i],$request->cantidad[$i],$request->totales[$i],$request->precio[$i],$newF->id);
+        }
+        return redirect()->route('tablaV');
+        // $newF->save();
+
+
     }
 
     /**

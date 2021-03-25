@@ -41,14 +41,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/erp/sale/add', [PagesController::class, 'formSale'])->middleware('can:sale.add')->name('sale.add');
     Route::get('/erp/user/add', [PagesController::class, 'formUser'])->middleware('can:user.add')->name('user.add');
 
-    Route::post('/erp/category/add', [PagesController::class, 'addCategory'])->middleware('can:category.create')->name('category.create');
-    Route::post('/erp/client/add', [PagesController::class, 'addClient'])->middleware('can:client.create')->name('client.create');
-    Route::post('/erp/product/add', [PagesController::class, 'addProduct'])->middleware('can:product.create')->name('product.create');
-    Route::post('/erp/sale/add', [PagesController::class, 'addSale'])->middleware('can:sale.create')->name('sale.create');
+    Route::post('/erp/category/add', [CategoriaController::class, 'create'])->middleware('can:category.create')->name('category.create');
+    Route::post('/erp/client/add', [ClienteController::class, 'create'])->middleware('can:client.create')->name('client.create');
+    Route::post('/erp/product/add', [ProductoController::class, 'create'])->middleware('can:product.create')->name('product.create');
+    Route::post('/erp/sale/add', [VentaController::class, 'create'])->middleware('can:sale.create')->name('sale.create');
 
-    Route::get('/erp/category/{id}/edit',[PagesController::class, 'editCategory'])->middleware('can:category.edit')->name('category.edit');
-    Route::get('/erp/client/{id}/edit',[PagesController::class, 'editClient'])->middleware('can:client.edit')->name('client.edit');
-    Route::get('/erp/product/{id}/edit',[PagesController::class, 'editProduct'])->middleware('can:product.edit')->name('product.edit');
+    Route::get('/erp/category/{id}/edit',[CategoriaController::class, 'edit'])->middleware('can:category.edit')->name('category.edit');
+    Route::get('/erp/client/{id}/edit',[ClienteController::class, 'edit'])->middleware('can:client.edit')->name('client.edit');
+    Route::get('/erp/product/{id}/edit',[ProductoController::class, 'edit'])->middleware('can:product.edit')->name('product.edit');
     Route::get('/erp/sale/{id}/edit',[PagesController::class, 'editSale'])->middleware('can:product.edit')->name("sale.edit");
     Route::get('/erp/product/{id}',[ProductoController::class, 'productData']);
     Route::get('/erp/sale/{id}',[VentaController::class, 'saleData']);

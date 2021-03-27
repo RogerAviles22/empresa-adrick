@@ -76,5 +76,14 @@
             );
         </script>
     @endif
+    @if (session('eliminar') == 'error')
+        <script>
+            Swal.fire(
+                '!Error en la base!',
+                'El elemento tiene una referencia en tabla Producto.',
+                'error'
+            );
+        </script>
+    @endif
     <script src="{{ asset('js/alerts.js') }}"></script>
 @endsection

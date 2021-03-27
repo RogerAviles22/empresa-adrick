@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use \Illuminate\Database\QueryException;
 
 class CategoriaController extends Controller
 {
@@ -94,8 +95,12 @@ class CategoriaController extends Controller
      */
     public function destroy ($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-        return back()->with('eliminar','ok');
+        try{
+            $categoria = Categoria::findOrFail($id);
+            $categoria->delete();
+            return back()->with('eliminar','ok');
+        }catch(QueryException $e){
+            return back()->with('eliminar','error');
+        }
     }
 }

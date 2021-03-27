@@ -47,13 +47,12 @@
                             <td>{{$sale->total}}</td>
                             <td>
                                 <div class="d-flex justify-content-start">
-                                    <a href="{{route('sale.edit',$sale->id)}}" type="button" class="btn btn-warning btn-sm"><i style="font-size:10%" class="bi bi-pencil-square"></i></a>
+                                    <a href="{{route('sale.edit',$sale->id)}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                     <form class="items-delete" action="{{ route('sale.destroy', $sale->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                                     </form>
-                                    <button type="button" class="btn btn-success btn-sm"><i class="bi bi-search"></i></button>
                                     <a target="_blank" href="{{route('sale.imprimir',$sale->id)}}" type="button" class="btn btn-primary btn-sm"><i class="bi bi-file-earmark-text-fill"></i></a>
                                 </div>
                             </td>
@@ -123,6 +122,7 @@
 
 
   }
+
 
   </script>
 @endsection
